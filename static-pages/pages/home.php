@@ -232,9 +232,142 @@
     </div>
 
     <!-- How it works Section -->
-     <div class="container">
+    <section class="how-it-works container text-center">
+        <div class="subtitle text-tangerine mb-2">How to work</div>
+        <h2 class="title mb-5">Food Us An Important Part Of A Balanced Diet</h2>
         
-     </div>
+        <div class="row g-5 align-items-center mt-2">
+            <!-- Step 1: Choose -->
+            <div class="col-lg-4">
+                <div class="how-step">
+                    <div class="how-step-image-wrapper">
+                        <div class="laptop-container">
+                            <img src="../images/laptop.png" alt="Laptop" class="laptop-img">
+                        </div>
+                    </div>
+                    <div class="step-label">
+                        CHOOSE <span class="step-dot ms-2"></span>
+                    </div>
+                    <p>Select your favorite Cameroonian meal from our diverse menu. We have everything from Jollof to Eru.</p>
+                </div>
+            </div>
+
+            <!-- Step 2: Prepare -->
+            <div class="col-lg-4">
+                <div class="how-step">
+                    <div class="how-step-image-wrapper">
+                        <img src="../images/eru.png" alt="Prepared Food" class="deliver-img">
+                    </div>
+                    <div class="step-label justify-content-center">
+                        <span class="step-dot me-2"></span> PREPARE FOOD <span class="step-dot ms-2"></span>
+                    </div>
+                    <p class="mx-auto text-center">Our professional chefs prepare your meal with the freshest ingredients and authentic spices.</p>
+                </div>
+            </div>
+
+            <!-- Step 3: Deliver -->
+            <div class="col-lg-4">
+                <div class="how-step text-end">
+                    <div class="how-step-image-wrapper">
+                        <img src="../images/deliver-bags.png" alt="Deliver Bag" class="deliver-bag-img">
+                    </div>
+                    <div class="step-label justify-content-end">
+                        <span class="step-dot me-2"></span> DELIVER
+                    </div>
+                    <p class="ms-auto text-end">Our bike delivery team ensures your food arrives hot and fresh in your city.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Lines SVG -->
+        <div class="how-decoration-lines d-none d-lg-block">
+            <svg width="100%" height="200" viewBox="0 0 1000 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M150 100 C 250 150, 400 50, 500 100 S 750 150, 850 100" stroke="#f9942a" stroke-width="3" stroke-dasharray="10 10" opacity="0.6"/>
+                <!-- Arrow Head -->
+                <path d="M840 90 L860 100 L840 110 Z" fill="#f9942a" opacity="0.6"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section container">
+        <div class="text-center mb-5">
+            <div class="subtitle text-tangerine mb-2">Testimonials</div>
+            <h2 class="title text-black">Our Happy Client Says</h2>
+        </div>
+
+        <div class="row align-items-center">
+            <!-- Left Side: Carousel -->
+            <div class="col-lg-6">
+                <div id="testimonialCarousel" class="carousel slide testimonial-carousel" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- Slide 1 -->
+                        <div class="carousel-item active">
+                            <div class="testimonial-card">
+                                <div class="testimonial-user">
+                                    <img src="../images/avatar-1.png" alt="Jean-Pierre" class="testimonial-avatar">
+                                    <div class="testimonial-user-info">
+                                        <div class="name">Jean-Pierre Nzeke</div>
+                                        <div class="role">Software Engineer</div>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "The flavors are exactly like home! The Eru is perfectly seasoned, and the delivery was incredibly fast. Best Cameroonian food in the city by far."
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="carousel-item">
+                            <div class="testimonial-card">
+                                <div class="testimonial-user">
+                                    <img src="../images/avatar-2.png" alt="Maryam" class="testimonial-avatar">
+                                    <div class="testimonial-user-info">
+                                        <div class="name">Maryam Bako</div>
+                                        <div class="role">Marketing Specialist</div>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "I order from here at least twice a week. The Ndole is so creamy and the portions are very generous. Highly recommended for anyone craving authentic taste!"
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="carousel-item">
+                            <div class="testimonial-card">
+                                <div class="testimonial-user">
+                                    <img src="../images/avatar-3.png" alt="Samuel" class="testimonial-avatar">
+                                    <div class="testimonial-user-info">
+                                        <div class="name">Samuel Nfor</div>
+                                        <div class="role">Graphic Designer</div>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    "Beautiful presentation and even better taste. The mobile app makes it so easy to order. I love the smoky flavor of their Jollof rice!"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Food Image -->
+            <div class="col-lg-6 testimonial-food-img-container">
+                <img src="../images/testimonial-platter.png" alt="Food Platter" class="testimonial-food-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <?php include '../components/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
