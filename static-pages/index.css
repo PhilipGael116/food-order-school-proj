@@ -10,7 +10,7 @@
     --color-black: #000000;
     --color-white: #ffffff;
     --color-gray: #b1b1b1;
-    --color-gr: #3a3a3a;
+    --color-gray2: #3a3a3a;
 
     /* Text Styles - Font Sizes */
     --fs-h1: 95px;
@@ -63,4 +63,35 @@ p.p1 {
 p.p2 {
     font-size: var(--fs-p2);
     line-height: var(--lh-auto);
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.nav a {
+    margin-right: 1rem;
+    text-decoration: none;
+    color: var(--color-black);
+    font-size: var(--fs-p2);
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--color-gray2);
+}
+
+.icons i {
+    margin-left: 1rem;
+    font-size: var(--fs-p1);
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
