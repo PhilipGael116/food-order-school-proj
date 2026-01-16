@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    /* Font Family */
+    --ff-primary: 'Inter', sans-serif;
+
+    /* Color Styles */
+    --color-tangerine: #f9942a;
+    --color-light-tangerine: #fde8d0;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-gray: #b1b1b1;
+    --color-gr: #3a3a3a;
+
+    /* Text Styles - Font Sizes */
+    --fs-h1: 95px;
+    --fs-h2: 48px;
+    --fs-h3: 36px;
+    --fs-h4: 26px;
+    --fs-h5: 18px;
+    --fs-p1: 18px;
+    --fs-p2: 13px;
+
+    /* Line Heights */
+    --lh-auto: normal;
+}
+
+body {
+    font-family: var(--ff-primary);
+}
+
+/* Optional: Applying basic Typography based on the variables */
+h1 {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-auto);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-auto);
+}
+
+h3 {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-auto);
+}
+
+h4 {
+    font-size: var(--fs-h4);
+    line-height: var(--lh-auto);
+}
+
+h5 {
+    font-size: var(--fs-h5);
+    line-height: var(--lh-auto);
+}
+
+p.p1 {
+    font-size: var(--fs-p1);
+    line-height: var(--lh-auto);
+}
+
+p.p2 {
+    font-size: var(--fs-p2);
+    line-height: var(--lh-auto);
+}
