@@ -11,6 +11,6 @@
     </nav>
     <div class="icons">
         <a href="../pages/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
-        <a href="../pages/profile.php"><i class="fa-solid fa-user"></i></a>
+        <a href="../pages/register.php"><i class="fa-solid fa-user"></i></a>
     </div>
 </header>
