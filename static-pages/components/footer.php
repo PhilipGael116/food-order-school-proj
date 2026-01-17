@@ -44,7 +44,7 @@
                 <h4 class="footer-title">Contact Us</h4>
                 <ul class="footer-links list-unstyled mb-4">
                     <li>1234 Country Club Ave</li>
-                    <li>NC 123456, London, UK</li>
+                    <li>BUea, SW, Cameroon</li>
                     <li>+237 670 123 456</li>
                 </ul>
                 <div class="newsletter-box">

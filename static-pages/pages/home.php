@@ -232,7 +232,7 @@
     </div>
 
     <!-- How it works Section -->
-    <section class="how-it-works container text-center">
+    <section class="how-it-works container text-center" id="how-it-works">
         <div class="subtitle text-tangerine mb-2">How to work</div>
         <h2 class="title mb-5">Food Us An Important Part Of A Balanced Diet</h2>
         
