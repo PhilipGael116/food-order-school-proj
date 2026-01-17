@@ -1,14 +1,16 @@
 <header class="container">
     <div class="logo">
-        <img src="../images/logo.png" alt="logo">
+        <a href="../pages/home.php">
+            <img src="../images/logo.png" alt="logo">
+        </a>
     </div>
     <nav class="nav">
-        <a href="#">Home</a>
-        <a href="#">Menu</a>
-        <a href="#">About Us</a>
+        <a href="../pages/home.php">Home</a>
+        <a href="../pages/menu.php">Menu</a>
+        <a href="../pages/about.php">About Us</a>
     </nav>
     <div class="icons">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <i class="fa-solid fa-user"></i>
+        <a href="../pages/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href="../pages/profile.php"><i class="fa-solid fa-user"></i></a>
     </div>
 </header>

@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    /* Font Family */
+    --ff-primary: 'Inter', sans-serif;
+
+    /* Color Styles */
+    --color-tangerine: #f9942a;
+    --color-light-tangerine: #fde8d0;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-gray: #b1b1b1;
+    --color-gray2: #3a3a3a;
+    --color-accent: #8e44ad;
+    /* For subtle highlights if needed, but we use tangerine */
+
+    /* Text Styles - Font Sizes */
+    --fs-h1: 64px;
+    --fs-h2: 48px;
+    --fs-h3: 36px;
+    --fs-h4: 26px;
+    --fs-h5: 18px;
+    --fs-p1: 18px;
+    --fs-p2: 13px;
+
+    /* Line Heights */
+    --lh-auto: normal;
+}
+
+body {
+    font-family: var(--ff-primary);
+    background-color: #ffffff;
+}
+
+/* Compact Container */
+.container {
+    max-width: 1000px !important;
+}
+
+/* Header (Copied from index.css) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+}
+
+.logo img {
+    width: 120px;
+}
+
+.nav a {
+    margin: 0 1.5rem;
+    text-decoration: none;
+    color: var(--color-black);
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--color-tangerine);
+}
+
+.icons i {
+    margin-left: 1.5rem;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--color-black);
+    transition: 0.3s ease;
+}
+
+.icons i:hover {
+    color: var(--color-tangerine);
+    transform: scale(1.1);
+}
+
+/* Footer (Copied from index.css) */
+.footer-section {
+    padding: 80px 0 40px;
+    background-color: #fcfcfc;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--color-black);
+    margin-bottom: 30px;
+}
+
+.footer-desc {
+    color: var(--color-gray);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+    color: var(--color-gray);
+    font-size: 15px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--color-gray);
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--color-tangerine);
+    padding-left: 5px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    background: var(--color-light-tangerine);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-tangerine);
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.footer-social a:hover {
+    background: var(--color-tangerine);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.newsletter-box {
+    background: #ffffff;
+    border-radius: 50px;
+    padding: 8px 8px 8px 25px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eee;
+}
+
+.newsletter-box input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+    color: var(--color-gray);
+}
+
+.newsletter-box button {
+    width: 40px;
+    height: 40px;
+    background: var(--color-tangerine);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+/* Checkout Page Specific Styles */
+.checkout-section {
+    padding: 20px 0;
+    min-height: calc(100vh - 100px);
+    /* Adjusting for header roughly */
+    display: flex;
+    align-items: center;
+}
+
+.checkout-wrapper {
+    display: flex;
+    background: #ffffff;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-height: 85vh;
+    /* Ensuring it doesn't exceed viewport height */
+}
+
+.checkout-left {
+    flex: 1;
+    background: linear-gradient(135deg, #f9942a 0%, #ffc482 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+}
+
+.checkout-illustration {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout-illustration img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
+.checkout-right {
+    flex: 1.2;
+    padding: 40px 60px;
+    background: white;
+    overflow-y: auto;
+    /* Allow scrolling within the form if screen is tiny */
+}
+
+.checkout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.checkout-header h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.qr-code-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8f8f8;
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-gray2);
+    text-decoration: none;
+}
+
+.qr-code-link i {
+    color: var(--color-tangerine);
+}
+
+/* Third-party Payment Buttons */
+.payment-options {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.payment-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    background: #fcfcfc;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.payment-btn:hover {
+    border-color: var(--color-tangerine);
+    background: #fff;
+}
+
+.payment-btn i {
+    font-size: 16px;
+}
+
+.pay-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: var(--color-gray);
+    font-size: 13px;
+}
+
+.pay-separator::before,
+.pay-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.pay-separator:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.pay-separator:not(:empty)::after {
+    margin-left: .5em;
+}
+
+/* Form Styles */
+.checkout-form .form-group {
+    margin-bottom: 18px;
+}
+
+.checkout-form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--color-black);
+}
+
+.checkout-form label span {
+    color: #e94339;
+    margin-left: 2px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 18px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--color-tangerine);
+    box-shadow: 0 0 0 4px rgba(249, 148, 42, 0.05);
+}
+
+.total-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.total-display span:first-child {
+    font-weight: 700;
+    color: var(--color-gray2);
+    font-size: 15px;
+}
+
+.total-display .amount {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--color-black);
+}
+
+.btn-pay {
+    width: 100%;
+    background: var(--color-tangerine);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-pay:hover {
+    background: #e08323;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(249, 148, 42, 0.2);
+}
