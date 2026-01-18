@@ -164,7 +164,7 @@
                     <!-- Food Item Card 7 -->
                     <div class="col">
                         <div class="product-card">
-                            <img src="../images/achu.png" alt="Kati Kati" class="product-img">
+                            <img src="../images/testimonial-platter.png" alt="Kati Kati" class="product-img">
                             <div class="product-name">Kati Kati Chicken</div>
                             <p class="product-desc">Traditional roasted chicken with spices.</p>
                             <div class="product-price">4000</div>
