@@ -94,7 +94,11 @@ $(document).ready(function () {
     // Update totals
     function updateTotals() {
         const subtotal = window.cartManager.getTotal();
-        const shipping = subtotal > 0 ? 5.00 : 0;
+
+        // Get selected shipping cost
+        const selectedShipping = $('input[name="shipping"]:checked').val();
+        const shipping = subtotal > 0 ? parseFloat(selectedShipping || 0) : 0;
+
         const total = subtotal + shipping;
 
         $('.totals-row span:last-child').first().text(`$${subtotal.toFixed(2)}`);

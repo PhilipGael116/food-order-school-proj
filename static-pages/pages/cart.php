@@ -135,11 +135,11 @@
                         <div class="shipping-options">
                             <div class="shipping-opt">
                                 <span>Flat rate: <span class="text-tangerine">$5.00</span></span>
-                                <input type="radio" name="shipping" checked>
+                                <input type="radio" name="shipping" value="5" checked>
                             </div>
                             <div class="shipping-opt">
                                 <span>Local pickup</span>
-                                <input type="radio" name="shipping">
+                                <input type="radio" name="shipping" value="0">
                             </div>
                             <div class="mt-2">
                                 Shipping to <span class="fw-bold">Yaoundé, CM</span>
