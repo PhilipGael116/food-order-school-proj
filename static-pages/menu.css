@@ -11,8 +11,7 @@
     --color-white: #ffffff;
     --color-gray: #b1b1b1;
     --color-gray2: #3a3a3a;
-    --color-accent: #8e44ad;
-    /* For subtle highlights if needed, but we use tangerine */
+    --color-blue-tint: #e3f2fd;
 
     /* Text Styles - Font Sizes */
     --fs-h1: 64px;
@@ -29,7 +28,7 @@
 
 body {
     font-family: var(--ff-primary);
-    background-color: #ffffff;
+    background-color: #fcfcfc;
     overflow-x: hidden;
 }
 
@@ -168,7 +167,6 @@ body {
     color: var(--color-tangerine);
 }
 
-/* Footer (Copied from index.css) */
 .footer-section {
     padding: 80px 0 40px;
     background-color: #fcfcfc;
@@ -261,221 +259,226 @@ body {
     transition: 0.3s;
 }
 
-/* Checkout Page Specific Styles */
-.checkout-section {
-    padding: 20px 0;
-    min-height: calc(100vh - 100px);
-    /* Adjusting for header roughly */
-    display: flex;
-    align-items: center;
+/* Menu Page Content */
+.menu-section {
+    padding: 40px 0;
 }
 
-.checkout-wrapper {
-    display: flex;
-    background: #ffffff;
+.menu-banner {
+    background: linear-gradient(90deg, #e3f2f1 0%, #ffffff 100%);
     border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    max-height: 85vh;
-    /* Ensuring it doesn't exceed viewport height */
-}
-
-.checkout-left {
-    flex: 1;
-    background: linear-gradient(135deg, #f9942a 0%, #ffc482 100%);
+    padding: 60px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 40px;
-    position: relative;
-}
-
-.checkout-illustration {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.checkout-illustration img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
-}
-
-.checkout-right {
-    flex: 1.2;
-    padding: 40px 60px;
-    background: white;
-    overflow-y: auto;
-    /* Allow scrolling within the form if screen is tiny */
-}
-
-.checkout-header {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
 }
 
-.checkout-header h2 {
-    font-size: 26px;
-    font-weight: 800;
-    margin: 0;
+.banner-content {
+    max-width: 500px;
+    z-index: 2;
 }
 
-.qr-code-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #f8f8f8;
-    padding: 8px 15px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--color-gray2);
-    text-decoration: none;
-}
-
-.qr-code-link i {
-    color: var(--color-tangerine);
-}
-
-/* Third-party Payment Buttons */
-.payment-options {
-    display: flex;
-    gap: 12px;
+.banner-title {
+    font-size: 36px;
+    font-weight: 900;
+    color: #2b2b5c;
     margin-bottom: 20px;
 }
 
-.payment-btn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px;
-    border: 1px solid #f0f0f0;
-    border-radius: 12px;
-    background: #fcfcfc;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.payment-btn:hover {
-    border-color: var(--color-tangerine);
-    background: #fff;
-}
-
-.payment-btn i {
+.banner-desc {
     font-size: 16px;
+    color: var(--color-gray2);
+    opacity: 0.8;
 }
 
-.pay-separator {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 20px 0;
-    color: var(--color-gray);
-    font-size: 13px;
+.banner-img-container {
+    position: absolute;
+    right: 50px;
+    bottom: 0;
+    height: 110%;
 }
 
-.pay-separator::before,
-.pay-separator::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid #f0f0f0;
+.banner-img {
+    height: 100%;
+    object-fit: contain;
 }
 
-.pay-separator:not(:empty)::before {
-    margin-right: .5em;
+/* Sidebar (Order Flow) */
+.menu-sidebar {
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    height: fit-content;
 }
 
-.pay-separator:not(:empty)::after {
-    margin-left: .5em;
-}
-
-/* Form Styles */
-.checkout-form .form-group {
-    margin-bottom: 18px;
-}
-
-.checkout-form label {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 8px;
+.sidebar-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 30px;
     color: var(--color-black);
 }
 
-.checkout-form label span {
-    color: #e94339;
-    margin-left: 2px;
-}
-
-.input-wrapper {
-    position: relative;
+.order-item-card {
     display: flex;
     align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
-.input-wrapper input {
-    width: 100%;
-    padding: 12px 18px;
-    border: 1px solid #eee;
-    border-radius: 12px;
+.order-item-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.order-item-info {
+    flex: 1;
+}
+
+.order-item-name {
+    font-weight: 700;
     font-size: 14px;
-    outline: none;
-    transition: 0.3s;
+    margin-bottom: 4px;
 }
 
-.input-wrapper input:focus {
-    border-color: var(--color-tangerine);
-    box-shadow: 0 0 0 4px rgba(249, 148, 42, 0.05);
+.order-item-rating {
+    font-size: 12px;
+    color: var(--color-gray);
 }
 
-.total-display {
+/* Quantity Adjusters in Sidebar */
+.qty-adjust {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.qty-btn {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Main Menu Grid */
+.menu-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.menu-header h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--color-black);
+}
+
+.view-all {
+    color: var(--color-gray);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.food-item-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+    transition: 0.3s;
+    margin-bottom: 30px;
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.food-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(249, 148, 42, 0.1);
+    border-color: var(--color-light-tangerine);
+}
+
+.food-img-container {
+    position: relative;
     margin-bottom: 20px;
-    padding-top: 15px;
+}
+
+.food-img-circular {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.price-tag {
+    position: absolute;
+    bottom: 0;
+    right: 15%;
+    background: #ffcc00;
+    color: white;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    border: 3px solid white;
+}
+
+.food-name {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--color-black);
+    margin-bottom: 8px;
+}
+
+.food-rating {
+    font-size: 13px;
+    color: var(--color-gray);
+    margin-bottom: 20px;
+}
+
+.food-rating i {
+    color: #ffcc00;
+}
+
+.btn-order {
+    background: #eef2ff;
+    color: #3b82f6;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 30px;
+    font-weight: 700;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.btn-order:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+/* Simple Footer Styles for consistency */
+.footer-section {
+    padding: 80px 0 40px;
+    background-color: #fcfcfc;
     border-top: 1px solid #f0f0f0;
 }
 
-.total-display span:first-child {
-    font-weight: 700;
-    color: var(--color-gray2);
-    font-size: 15px;
-}
-
-.total-display .amount {
+.footer-title {
     font-size: 22px;
-    font-weight: 900;
-    color: var(--color-black);
-}
-
-.btn-pay {
-    width: 100%;
-    background: var(--color-tangerine);
-    color: white;
-    border: none;
-    border-radius: 14px;
-    padding: 14px;
-    font-size: 16px;
     font-weight: 800;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-pay:hover {
-    background: #e08323;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(249, 148, 42, 0.2);
+    color: var(--color-black);
+    margin-bottom: 30px;
 }

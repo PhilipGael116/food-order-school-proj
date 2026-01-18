@@ -28,7 +28,18 @@
 body {
     font-family: var(--ff-primary);
     background-color: #ffffff;
+    overflow-x: hidden;
     /* Ensuring a clean background */
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    display: none;
+}
+
+.mobile-nav.active {
+    display: block;
+    /* Or flex, depending on desired layout */
 }
 
 /* Compact Container */
@@ -248,21 +259,24 @@ p.p2 {
     border-color: var(--color-black);
 }
 
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 0;
-    /* Aligning vertical padding, removing horizontal padding to use container's */
+/* Main Header Styling */
+.main-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
 }
 
-.logo img {
+.main-header .logo img {
     width: 120px;
-    /* Slightly larger logo for premium feel */
+    transition: 0.3s;
 }
 
-.nav a {
+.main-header .nav a {
     margin: 0 1.5rem;
     text-decoration: none;
     color: var(--color-black);
@@ -271,21 +285,115 @@ header {
     transition: 0.3s ease;
 }
 
-.nav a:hover {
+.main-header .nav a:hover {
     color: var(--color-tangerine);
 }
 
-.icons i {
-    margin-left: 1.5rem;
+.main-header .icons a {
+    margin-left: 1.2rem;
     font-size: 20px;
-    cursor: pointer;
     color: var(--color-black);
     transition: 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.icons i:hover {
+.main-header .icons a:hover {
     color: var(--color-tangerine);
     transform: scale(1.1);
+}
+
+.hamburger-menu {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--color-black);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    /* Initially hidden off-screen */
+    width: 300px;
+    height: 100vh;
+    background: white;
+    z-index: 2000;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+    /* Ensure it is hidden when not active */
+}
+
+.mobile-nav.active {
+    right: 0;
+    visibility: visible;
+    /* Show when active */
+}
+
+.mobile-nav-header {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-nav-links a {
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-black);
+    text-decoration: none;
+    margin-bottom: 25px;
+    transition: 0.3s;
+}
+
+.mobile-nav-links a:hover {
+    color: var(--color-tangerine);
+    padding-left: 10px;
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--color-black);
+    cursor: pointer;
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-social a {
+    font-size: 20px;
+    color: var(--color-gray);
+    margin-right: 20px;
+    transition: 0.3s;
+}
+
+.mobile-social a:hover {
+    color: var(--color-tangerine);
+}
+
+.mobile-social a:hover {
+    color: var(--color-tangerine);
 }
 
 /* Schedule section */
