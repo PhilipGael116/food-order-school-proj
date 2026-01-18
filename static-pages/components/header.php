@@ -12,7 +12,10 @@
         </nav>
         <div class="header-right d-flex align-items-center">
             <div class="icons">
-                <a href="../pages/cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="../pages/cart.php">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </a>
                 <a href="../pages/register.php"><i class="fa-solid fa-user"></i></a>
             </div>
             <button class="hamburger-menu d-lg-none ms-3" id="mobile-menu-toggle">
@@ -41,6 +44,7 @@
     <div class="mobile-overlay" id="mobile-overlay"></div>
 </header>
 
+<script src="../js/cart-manager.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -60,5 +64,8 @@
         };
 
         $('#close-menu, #mobile-overlay').on('click', closeHandler);
+
+        // Update cart badge on page load
+        cartManager.updateCartBadge();
     });
 </script>

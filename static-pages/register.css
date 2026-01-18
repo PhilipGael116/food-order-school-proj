@@ -77,7 +77,6 @@ body {
 
 .main-header .icons a:hover {
     color: var(--color-tangerine);
-    transform: scale(1.1);
 }
 
 .hamburger-menu {
@@ -261,7 +260,7 @@ body {
 
 /* Registration Page Specific Styles */
 .register-section {
-    padding: 60px 0;
+    padding: 35px 0;
     min-height: calc(100vh - 100px);
     display: flex;
     align-items: center;

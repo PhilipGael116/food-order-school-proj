@@ -29,10 +29,10 @@
         </div>
 
         <div class="row">
-            <!-- Left Sidebar: Order Flow -->
+            <!-- Left Sidebar: Meal Info-->
             <div class="col-lg-4 mb-5">
                 <div class="menu-sidebar">
-                    <h3 class="sidebar-title">Order Flow</h3>
+                    <h3 class="sidebar-title">Meal Info</h3>
                     
                     <!-- Selected Items (Categorized as per user request) -->
                     <div class="category-block mb-4">
@@ -76,125 +76,116 @@
                     <a href="#" class="view-all">View all</a>
                 </div>
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 g-5">
                     <!-- Food Item Card 1 -->
                     <div class="col">
-                        <div class="food-item-card">
-                            <div class="food-img-container">
-                                <img src="../images/ndole.png" alt="Ndole" class="food-img-circular">
-                                <span class="price-tag">$18</span>
+                        <div class="product-card">
+                            <img src="../images/ndole.png" alt="Ndole" class="product-img">
+                            <div class="product-name">Ndole & Miondo</div>
+                            <p class="product-desc">Creamy bitter leaves with cassava.</p>
+                            <div class="product-price">18.00</div>
+                            <div class="product-footer">
+                                <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                                <div class="product-rating"><i class="fa fa-star"></i> 4.8</div>
                             </div>
-                            <h4 class="food-name">Ndole & Miondo</h4>
-                            <div class="food-rating">
-                                <i class="fas fa-star"></i> 4.8 <span class="text-muted">(12K reviews)</span>
-                            </div>
-                            <button class="btn-order">Order</button>
                         </div>
                     </div>
 
                     <!-- Food Item Card 2 -->
                     <div class="col">
-                        <div class="food-item-card">
-                            <div class="food-img-container">
-                                <img src="../images/eru.png" alt="Eru" class="food-img-circular">
-                                <span class="price-tag">$15</span>
+                        <div class="product-card">
+                            <img src="../images/eru.png" alt="Eru" class="product-img">
+                            <div class="product-name">Eru & Water Fufu</div>
+                            <p class="product-desc">Rich traditional vegetables with fufu.</p>
+                            <div class="product-price">15.00</div>
+                            <div class="product-footer">
+                                <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                                <div class="product-rating"><i class="fa fa-star"></i> 4.2</div>
                             </div>
-                            <h4 class="food-name">Eru & Water Fufu</h4>
-                            <div class="food-rating">
-                                <i class="fas fa-star"></i> 4.2 <span class="text-muted">(19K reviews)</span>
-                            </div>
-                            <button class="btn-order">Order</button>
                         </div>
                     </div>
 
                     <!-- Food Item Card 3 -->
                     <div class="col">
-                        <div class="food-item-card">
-                            <div class="food-img-container">
-                                <img src="../images/achu.png" alt="Achu" class="food-img-circular">
-                                <span class="price-tag">$20</span>
+                        <div class="product-card">
+                            <img src="../images/achu.png" alt="Achu" class="product-img">
+                            <div class="product-name">Achu & Yellow Soup</div>
+                            <p class="product-desc">Taro paste with savory yellow soup.</p>
+                            <div class="product-price">20.00</div>
+                            <div class="product-footer">
+                                <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                                <div class="product-rating"><i class="fa fa-star"></i> 4.1</div>
                             </div>
-                            <h4 class="food-name">Achu & Yellow Soup</h4>
-                            <div class="food-rating">
-                                <i class="fas fa-star"></i> 4.1 <span class="text-muted">(10K reviews)</span>
-                            </div>
-                            <button class="btn-order">Order</button>
                         </div>
                     </div>
 
                     <!-- Food Item Card 4 -->
                     <div class="col">
-                        <div class="food-item-card">
-                            <div class="food-img-container">
-                                <img src="../images/jollof.png" alt="Jollof" class="food-img-circular">
-                                <span class="price-tag">$12</span>
+                        <div class="product-card">
+                            <img src="../images/jollof.png" alt="Jollof" class="product-img">
+                            <div class="product-name">Perfect Jollof Rice</div>
+                            <p class="product-desc">Authentic smoky flavor with fried plantain.</p>
+                            <div class="product-price">12.00</div>
+                            <div class="product-footer">
+                                <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                                <div class="product-rating"><i class="fa fa-star"></i> 4.9</div>
                             </div>
-                            <h4 class="food-name">Perfect Jollof Rice</h4>
-                            <div class="food-rating">
-                                <i class="fas fa-star"></i> 4.9 <span class="text-muted">(25K reviews)</span>
-                            </div>
-                            <button class="btn-order">Order</button>
                         </div>
                     </div>
 
-                    <!-- Row 2 -->
-                    <!-- Koki (Placeholder image handle) -->
+                    <!-- Food Item Card 5 -->
                     <div class="col">
-                        <div class="food-item-card">
-                            <div class="food-img-container">
-                                <img src="../images/ndole.png" alt="Koki" class="food-img-circular">
-                                <span class="price-tag">$10</span>
+                        <div class="product-card">
+                            <img src="../images/ndole.png" alt="Koki" class="product-img">
+                            <div class="product-name">Yellow Koki Beans</div>
+                            <p class="product-desc">Creamy beans cake with palm oil.</p>
+                            <div class="product-price">10.00</div>
+                            <div class="product-footer">
+                                <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                                <div class="product-rating"><i class="fa fa-star"></i> 4.5</div>
                             </div>
-                            <h4 class="food-name">Yellow Koki Beans</h4>
-                            <div class="food-rating">
-                                <i class="fas fa-star"></i> 4.5 <span class="text-muted">(8K reviews)</span>
-                            </div>
-                            <button class="btn-order">Order</button>
                         </div>
                     </div>
 
-                    <!-- Poulet DG -->
+                    <!-- Food Item Card 6 -->
                     <div class="col">
-                        <div class="food-item-card">
-                            <div class="food-img-container">
-                                <img src="../images/eru.png" alt="Poulet DG" class="food-img-circular">
-                                <span class="price-tag">$25</span>
+                        <div class="product-card">
+                            <img src="../images/eru.png" alt="Poulet DG" class="product-img">
+                            <div class="product-name">Poulet DG</div>
+                            <p class="product-desc">Director General Chicken with plantains.</p>
+                            <div class="product-price">25.00</div>
+                            <div class="product-footer">
+                                <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                                <div class="product-rating"><i class="fa fa-star"></i> 4.7</div>
                             </div>
-                            <h4 class="food-name">Poulet DG</h4>
-                            <div class="food-rating">
-                                <i class="fas fa-star"></i> 4.7 <span class="text-muted">(15K reviews)</span>
-                            </div>
-                            <button class="btn-order">Order</button>
                         </div>
                     </div>
 
-                    <!-- Kati Kati -->
+                    <!-- Food Item Card 7 -->
                     <div class="col">
-                        <div class="food-item-card">
-                            <div class="food-img-container">
-                                <img src="../images/achu.png" alt="Kati Kati" class="food-img-circular">
-                                <span class="price-tag">$15</span>
+                        <div class="product-card">
+                            <img src="../images/achu.png" alt="Kati Kati" class="product-img">
+                            <div class="product-name">Kati Kati Chicken</div>
+                            <p class="product-desc">Traditional roasted chicken with spices.</p>
+                            <div class="product-price">15.00</div>
+                            <div class="product-footer">
+                                <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                                <div class="product-rating"><i class="fa fa-star"></i> 4.6</div>
                             </div>
-                            <h4 class="food-name">Kati Kati Chicken</h4>
-                            <div class="food-rating">
-                                <i class="fas fa-star"></i> 4.6 <span class="text-muted">(11K reviews)</span>
-                            </div>
-                            <button class="btn-order">Order</button>
                         </div>
                     </div>
 
-                    <!-- Okok -->
+                    <!-- Food Item Card 8 -->
                     <div class="col">
-                        <div class="food-item-card">
-                            <div class="food-img-container">
-                                <img src="../images/ndole.png" alt="Okok" class="food-img-circular">
-                                <span class="price-tag">$15</span>
+                        <div class="product-card">
+                            <img src="../images/ndole.png" alt="Okok" class="product-img">
+                            <div class="product-name">Okok</div>
+                            <p class="product-desc">Gnetum leaves with groundnuts and sugar.</p>
+                            <div class="product-price">15.00</div>
+                            <div class="product-footer">
+                                <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                                <div class="product-rating"><i class="fa fa-star"></i> 4.2</div>
                             </div>
-                            <h4 class="food-name">Okok</h4>
-                            <div class="food-rating">
-                                <i class="fas fa-star"></i> 4.2 <span class="text-muted">(9K reviews)</span>
-                            </div>
-                            <button class="btn-order">Order</button>
                         </div>
                     </div>
                 </div>
@@ -206,6 +197,7 @@
     <?php include '../components/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/product-cart.js"></script>
 </body>
 
 </html>

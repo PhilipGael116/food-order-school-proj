@@ -227,7 +227,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <button class="product-btn">See More Products <i class="fa fa-arrow-right"></i></button>
+            <a href="./menu.php" class="product-btn">See More Products <i class="fa fa-arrow-right"></i></a>
         </div>
     </div>
 
@@ -370,6 +370,7 @@
     <?php include '../components/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/product-cart.js"></script>
 </body>
 
 </html>
