@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant API Test Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .status.online {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.offline {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .menu-item h3 {
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .menu-item .price {
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .menu-item button {
+            width: 100%;
+            padding: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.2s;
+        }
+        
+        .menu-item button:hover {
+            background: #5568d3;
+        }
+        
+        .cart {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .cart h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .cart-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        
+        .cart-total {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin: 15px 0;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 5px;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+        }
+        
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        
+        .user-info {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            .cart {
+                position: static;
+                margin: 20px 0;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍕 Restaurant API Test Page</h1>
+        <div id="status" class="status">Checking API status...</div>
+        
+        <!-- Login Section -->
+        <div class="section" id="loginSection">
+            <h2>Login</h2>
+            <div class="login-form">
+                <input type="email" id="email" placeholder="Email" value="customer@example.com">
+                <input type="password" id="password" placeholder="Password" value="password">
+                <button class="btn" onclick="login()">Login</button>
+            </div>
+            <div id="userInfo" style="display:none;"></div>
+        </div>
+        
+        <!-- Menu Section -->
+        <div class="section">
+            <h2>Menu Items</h2>
+            <div id="loading" class="loading" style="display:none;">Loading menu...</div>
+            <div id="menuItems" class="menu-grid"></div>
+        </div>
+    </div>
+    
+    <!-- Shopping Cart -->
+    <div class="cart">
+        <h3>🛒 Shopping Cart</h3>
+        <div id="cartItems"></div>
+        <div class="cart-total" id="cartTotal">Total: $0.00</div>
+        <button class="btn" onclick="checkout()" id="checkoutBtn" style="width:100%;">Checkout</button>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000/api';
+        let cart = [];
+        let token = localStorage.getItem('token');
+        let user = null;
+
+        // Check API status on load
+        async function checkAPIStatus() {
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                
+                if (data.status === 'ok') {
+                    document.getElementById('status').innerHTML = '✅ API is Online';
+                    document.getElementById('status').className = 'status online';
+                    loadMenu();
+                    if (token) checkAuth();
+                } else {
+                    showOffline();
+                }
+            } catch (error) {
+                showOffline();
+            }
+        }
+
+        function showOffline() {
+            document.getElementById('status').innerHTML = '❌ API is Offline - Make sure the server is running with: php artisan serve';
+            document.getElementById('status').className = 'status offline';
+        }
+
+        // Authentication
+        async function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    token = data.data.token;
+                    user = data.data.user;
+                    localStorage.setItem('token', token);
+                    showUserInfo();
+                    alert('Login successful!');
+                } else {
+                    alert('Login failed: ' + (data.message || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('Login error: ' + error.message);
+            }
+        }
+
+        async function checkAuth() {
+            try {
+                const response = await fetch(`${API_URL}/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    user = data.data;
+                    showUserInfo();
+                } else {
+                    localStorage.removeItem('token');
+                    token = null;
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+            }
+        }
+
+        function showUserInfo() {
+            document.getElementById('userInfo').style.display = 'block';
+            document.getElementById('userInfo').className = 'user-info';
+            document.getElementById('userInfo').innerHTML = `
+                <strong>Logged in as:</strong> ${user.name} (${user.email})<br>
+                <button class="btn btn-danger" onclick="logout()">Logout</button>
+            `;
+        }
+
+        async function logout() {
+            try {
+                await fetch(`${API_URL}/logout`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+            
+            localStorage.removeItem('token');
+            token = null;
+            user = null;
+            document.getElementById('userInfo').style.display = 'none';
+            alert('Logged out successfully');
+        }
+
+        // Load menu items
+        async function loadMenu() {
+            document.getElementById('loading').style.display = 'block';
+            
+            try {
+                const response = await fetch(`${API_URL}/menu-items`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayMenu(data.data);
+                }
+            } catch (error) {
+                console.error('Error loading menu:', error);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function displayMenu(items) {
+            const container = document.getElementById('menuItems');
+            
+            container.innerHTML = items.map(item => `
+                <div class="menu-item">
+                    <img src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/250x150?text=No+Image'">
+                    <h3>${item.name}</h3>
+                    <p style="color: #666; font-size: 0.9em; margin: 5px 0;">${item.description.substring(0, 60)}...</p>
+                    <div class="price">$${parseFloat(item.price).toFixed(2)}</div>
+                    <button onclick="addToCart(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price})">
+                        Add to Cart
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Cart functions
+        function addToCart(id, name, price) {
+            const existing = cart.find(item => item.id === id);
+            
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ id, name, price, quantity: 1 });
+            }
+            
+            updateCartDisplay();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const container = document.getElementById('cartItems');
+            const totalEl = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: #999;">Cart is empty</p>';
+                totalEl.textContent = 'Total: $0.00';
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <strong>${item.name}</strong><br>
+                    Qty: ${item.quantity} × $${parseFloat(item.price).toFixed(2)}
+                    = $${(item.quantity * item.price).toFixed(2)}
+                    <button class="btn btn-danger" style="margin-top: 5px; width: 100%; padding: 5px;" 
+                            onclick="removeFromCart(${item.id})">Remove</button>
+                </div>
+            `).join('');
+            
+            totalEl.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        async function checkout() {
+            if (!token) {
+                alert('Please login first!');
+                return;
+            }
+            
+            if (cart.length === 0) {
+                alert('Cart is empty!');
+                return;
+            }
+
+            const orderData = {
+                items: cart.map(item => ({
+                    menu_item_id: item.id,
+                    quantity: item.quantity
+                })),
+                delivery_address: "123 Main Street, Test City, TC 12345",
+                customer_phone: "1234567890",
+                payment_method: "cash",
+                notes: "Test order from API test page"
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/orders`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(orderData)
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert(`Order placed successfully!\n\nOrder Number: ${data.data.order_number}\nTotal: $${parseFloat(data.data.total).toFixed(2)}\nStatus: ${data.data.status}\n\nEstimated delivery: ${new Date(data.data.estimated_delivery_time).toLocaleString()}`);
+                    cart = [];
+                    updateCartDisplay();
+                } else {
+                    alert('Order failed: ' + (data.message || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('Checkout error: ' + error.message);
+            }
+        }
+
+        // Initialize on page load
+        checkAPIStatus();
+    </script>
+</body>
+</html>
