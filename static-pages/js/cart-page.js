@@ -1,26 +1,58 @@
 // Cart Page Handler
 $(document).ready(function () {
+    const $cartContainer = $('.cart-table-container');
+    const $totalsCard = $('.cart-totals-card');
+
     renderCart();
 
     // Render cart items
     function renderCart() {
-        const cart = cartManager.getCart();
-        const $tbody = $('.cart-table tbody');
+        const cart = window.cartManager.getCart();
 
         if (cart.length === 0) {
-            $tbody.html(`
-                <tr>
-                    <td colspan="4" class="text-center py-5">
-                        <i class="fa fa-shopping-cart" style="font-size: 48px; color: #ccc; margin-bottom: 15px;"></i>
-                        <p class="text-muted">Your cart is empty</p>
-                        <a href="menu.php" class="btn btn-primary mt-3">Browse Menu</a>
-                    </td>
-                </tr>
+            // Show empty state for the entire table container
+            $cartContainer.html(`
+                <div class="text-center py-5">
+                    <i class="fa fa-shopping-cart" style="font-size: 64px; color: #eee; margin-bottom: 20px;"></i>
+                    <h3 class="fw-bold">Your cart is empty</h3>
+                    <p class="text-muted">Looks like you haven't added anything to your cart yet.</p>
+                    <a href="menu.php" class="btn btn-primary mt-3 px-4 py-2" style="background: var(--color-tangerine); border: none; border-radius: 12px; font-weight: 700;">Start Ordering</a>
+                </div>
             `);
+
+            // Hide totals card on mobile or adjust it
+            $totalsCard.css('opacity', '0.5');
+            $totalsCard.find('.btn-checkout').addClass('disabled').attr('href', 'javascript:void(0)');
+
             updateTotals();
             return;
         }
 
+        // Restore table structure if it was empty
+        if (!$cartContainer.find('table').length) {
+            $cartContainer.html(`
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="cart-actions">
+                    <div class="coupon-box">
+                        <input type="text" placeholder="Coupon code" class="coupon-input">
+                        <button class="btn-apply">Apply coupon</button>
+                    </div>
+                    <button class="btn-remove-all">Remove All</button>
+                </div>
+            `);
+        }
+
+        const $tbody = $('.cart-table tbody');
         let html = '';
         cart.forEach(item => {
             const subtotal = (item.price * item.quantity).toFixed(2);
@@ -53,14 +85,16 @@ $(document).ready(function () {
         });
 
         $tbody.html(html);
+        $totalsCard.css('opacity', '1');
+        $totalsCard.find('.btn-checkout').removeClass('disabled').attr('href', 'checkout.php');
+
         updateTotals();
     }
 
     // Update totals
     function updateTotals() {
-        const cart = cartManager.getCart();
-        const subtotal = cartManager.getTotal();
-        const shipping = 5.00;
+        const subtotal = window.cartManager.getTotal();
+        const shipping = subtotal > 0 ? 5.00 : 0;
         const total = subtotal + shipping;
 
         $('.totals-row span:last-child').first().text(`$${subtotal.toFixed(2)}`);
@@ -70,11 +104,11 @@ $(document).ready(function () {
     // Handle quantity increase
     $(document).on('click', '.increase-qty', function () {
         const itemId = $(this).data('id');
-        const cart = cartManager.getCart();
+        const cart = window.cartManager.getCart();
         const item = cart.find(i => i.id === itemId);
 
         if (item) {
-            cartManager.updateQuantity(itemId, item.quantity + 1);
+            window.cartManager.updateQuantity(itemId, item.quantity + 1);
             renderCart();
         }
     });
@@ -82,15 +116,15 @@ $(document).ready(function () {
     // Handle quantity decrease
     $(document).on('click', '.decrease-qty', function () {
         const itemId = $(this).data('id');
-        const cart = cartManager.getCart();
+        const cart = window.cartManager.getCart();
         const item = cart.find(i => i.id === itemId);
 
         if (item) {
             if (item.quantity > 1) {
-                cartManager.updateQuantity(itemId, item.quantity - 1);
+                window.cartManager.updateQuantity(itemId, item.quantity - 1);
             } else {
                 if (confirm(`Remove ${item.name} from cart?`)) {
-                    cartManager.removeFromCart(itemId);
+                    window.cartManager.removeFromCart(itemId);
                 }
             }
             renderCart();
@@ -98,15 +132,16 @@ $(document).ready(function () {
     });
 
     // Handle remove all
-    $('.btn-remove-all').on('click', function () {
+    $(document).on('click', '.btn-remove-all', function (e) {
+        e.preventDefault();
         if (confirm('Are you sure you want to remove all items from your cart?')) {
-            cartManager.clearCart();
+            window.cartManager.clearCart();
             renderCart();
         }
     });
 
     // Handle shipping option change
-    $('input[name="shipping"]').on('change', function () {
+    $(document).on('change', 'input[name="shipping"]', function () {
         updateTotals();
     });
 });

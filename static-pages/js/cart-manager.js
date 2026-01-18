@@ -19,7 +19,7 @@ class CartManager {
     // Add item to cart
     addToCart(item) {
         const existingItem = this.cart.find(cartItem => cartItem.id === item.id);
-        
+
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
@@ -32,7 +32,7 @@ class CartManager {
                 category: item.category || 'Traditional Dish'
             });
         }
-        
+
         this.saveCart();
         this.showNotification(`${item.name} added to cart!`);
     }
@@ -40,7 +40,7 @@ class CartManager {
     // Update item quantity
     updateQuantity(itemId, newQuantity) {
         const item = this.cart.find(cartItem => cartItem.id === itemId);
-        
+
         if (item) {
             if (newQuantity <= 0) {
                 this.removeFromCart(itemId);
@@ -82,7 +82,7 @@ class CartManager {
     updateCartBadge() {
         const badge = document.querySelector('.cart-badge');
         const count = this.getItemCount();
-        
+
         if (badge) {
             badge.textContent = count;
             badge.style.display = count > 0 ? 'flex' : 'none';
@@ -117,5 +117,5 @@ class CartManager {
     }
 }
 
-// Initialize cart manager
-const cartManager = new CartManager();
+// Initialize cart manager and make it globally accessible
+window.cartManager = new CartManager();

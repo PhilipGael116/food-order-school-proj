@@ -1,7 +1,7 @@
 // Product Page Cart Handler
 $(document).ready(function () {
-    // Handle Add to Cart button clicks
-    $('.product-btn').on('click', function (e) {
+    // Handle Add to Cart button clicks (only buttons, not links)
+    $('button.product-btn').on('click', function (e) {
         e.preventDefault();
 
         const $card = $(this).closest('.product-card');
@@ -22,6 +22,6 @@ $(document).ready(function () {
         };
 
         // Add to cart
-        cartManager.addToCart(product);
+        window.cartManager.addToCart(product);
     });
 });
