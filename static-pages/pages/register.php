@@ -57,7 +57,16 @@
             <div class="register-right d-none d-lg-flex">
                 <div class="shape-bg"></div>
                 <img src="../images/register-hero.png" alt="Registration Hero" class="register-hero-img">
-                <div class="hero-text-bottom">A TASTE BEYOND YOUR IMAGINATION</div>
+                <div class="hero-curved-text">
+                    <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
+                        <path id="curve" d="M 50,220 Q 350,20 650,220" fill="transparent" stroke="none" />
+                        <text width="700">
+                            <textPath xlink:href="#curve" href="#curve" startOffset="50%" text-anchor="middle">
+                                A TASTE BEYOND YOUR IMAGINATION
+                            </textPath>
+                        </text>
+                    </svg>
+                </div>
             </div>
         </div>
     </section>

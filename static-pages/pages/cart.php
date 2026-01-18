@@ -42,7 +42,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="cart-price">$24.00</span>
+                                    <span class="cart-price">3500 FCFA</span>
                                 </td>
                                 <td>
                                     <div class="quantity-control">
@@ -52,7 +52,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="cart-subtotal">$24.00</span>
+                                    <span class="cart-subtotal">3500 FCFA</span>
                                 </td>
                             </tr>
                             <!-- Product 2: Ndole -->
@@ -67,7 +67,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="cart-price">$30.00</span>
+                                    <span class="cart-price">3500 FCFA</span>
                                 </td>
                                 <td>
                                     <div class="quantity-control">
@@ -77,7 +77,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="cart-subtotal">$30.00</span>
+                                    <span class="cart-subtotal">3500 FCFA</span>
                                 </td>
                             </tr>
                             <!-- Product 3: Achu -->
@@ -92,7 +92,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="cart-price">$70.00</span>
+                                    <span class="cart-price">3000 FCFA</span>
                                 </td>
                                 <td>
                                     <div class="quantity-control">
@@ -102,7 +102,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="cart-subtotal">$70.00</span>
+                                    <span class="cart-subtotal">3000 FCFA</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -125,7 +125,7 @@
                     
                     <div class="totals-row">
                         <span>Subtotal</span>
-                        <span class="fw-bold">$124.00</span>
+                        <span class="fw-bold">10000 FCFA</span>
                     </div>
 
                     <div class="totals-row shipping">
@@ -134,8 +134,8 @@
                         </div>
                         <div class="shipping-options">
                             <div class="shipping-opt">
-                                <span>Flat rate: <span class="text-tangerine">$5.00</span></span>
-                                <input type="radio" name="shipping" value="5" checked>
+                                <span>Flat rate: <span class="text-tangerine">1000 FCFA</span></span>
+                                <input type="radio" name="shipping" value="1000" checked>
                             </div>
                             <div class="shipping-opt">
                                 <span>Local pickup</span>
@@ -150,7 +150,7 @@
 
                     <div class="total-amount-row">
                         <span>Total</span>
-                        <span class="text-tangerine">$129.00</span>
+                        <span class="text-tangerine">11000 FCFA</span>
                     </div>
 
                     <a href="checkout.php" class="btn btn-checkout text-center d-block text-decoration-none">Proceed to checkout</a>

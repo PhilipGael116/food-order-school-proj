@@ -83,7 +83,7 @@
                             <img src="../images/ndole.png" alt="Ndole" class="product-img">
                             <div class="product-name">Ndole & Miondo</div>
                             <p class="product-desc">Creamy bitter leaves with cassava.</p>
-                            <div class="product-price">18.00</div>
+                            <div class="product-price">3500</div>
                             <div class="product-footer">
                                 <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
                                 <div class="product-rating"><i class="fa fa-star"></i> 4.8</div>
@@ -97,7 +97,7 @@
                             <img src="../images/eru.png" alt="Eru" class="product-img">
                             <div class="product-name">Eru & Water Fufu</div>
                             <p class="product-desc">Rich traditional vegetables with fufu.</p>
-                            <div class="product-price">15.00</div>
+                            <div class="product-price">3500</div>
                             <div class="product-footer">
                                 <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
                                 <div class="product-rating"><i class="fa fa-star"></i> 4.2</div>
@@ -111,7 +111,7 @@
                             <img src="../images/achu.png" alt="Achu" class="product-img">
                             <div class="product-name">Achu & Yellow Soup</div>
                             <p class="product-desc">Taro paste with savory yellow soup.</p>
-                            <div class="product-price">20.00</div>
+                            <div class="product-price">3000</div>
                             <div class="product-footer">
                                 <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
                                 <div class="product-rating"><i class="fa fa-star"></i> 4.1</div>
@@ -125,7 +125,7 @@
                             <img src="../images/jollof.png" alt="Jollof" class="product-img">
                             <div class="product-name">Perfect Jollof Rice</div>
                             <p class="product-desc">Authentic smoky flavor with fried plantain.</p>
-                            <div class="product-price">12.00</div>
+                            <div class="product-price">2500</div>
                             <div class="product-footer">
                                 <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
                                 <div class="product-rating"><i class="fa fa-star"></i> 4.9</div>
@@ -139,7 +139,7 @@
                             <img src="../images/ndole.png" alt="Koki" class="product-img">
                             <div class="product-name">Yellow Koki Beans</div>
                             <p class="product-desc">Creamy beans cake with palm oil.</p>
-                            <div class="product-price">10.00</div>
+                            <div class="product-price">2000</div>
                             <div class="product-footer">
                                 <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
                                 <div class="product-rating"><i class="fa fa-star"></i> 4.5</div>
@@ -153,7 +153,7 @@
                             <img src="../images/eru.png" alt="Poulet DG" class="product-img">
                             <div class="product-name">Poulet DG</div>
                             <p class="product-desc">Director General Chicken with plantains.</p>
-                            <div class="product-price">25.00</div>
+                            <div class="product-price">5000</div>
                             <div class="product-footer">
                                 <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
                                 <div class="product-rating"><i class="fa fa-star"></i> 4.7</div>
@@ -167,7 +167,7 @@
                             <img src="../images/achu.png" alt="Kati Kati" class="product-img">
                             <div class="product-name">Kati Kati Chicken</div>
                             <p class="product-desc">Traditional roasted chicken with spices.</p>
-                            <div class="product-price">15.00</div>
+                            <div class="product-price">4000</div>
                             <div class="product-footer">
                                 <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
                                 <div class="product-rating"><i class="fa fa-star"></i> 4.6</div>
@@ -181,7 +181,7 @@
                             <img src="../images/ndole.png" alt="Okok" class="product-img">
                             <div class="product-name">Okok</div>
                             <p class="product-desc">Gnetum leaves with groundnuts and sugar.</p>
-                            <div class="product-price">15.00</div>
+                            <div class="product-price">2500</div>
                             <div class="product-footer">
                                 <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
                                 <div class="product-rating"><i class="fa fa-star"></i> 4.2</div>

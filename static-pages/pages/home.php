@@ -61,7 +61,7 @@
                             <h4 class="meal-name mb-1">Jollof Rice</h4>
                             <p class="meal-desc mb-2">With Fried Plantain</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="meal-price">$5.15</span>
+                                <span class="meal-price">2500 <span>FCFA</span></span>
                                 <div class="meal-nav">
                                     <i class="fas fa-arrow-left"></i>
                                     <i class="fas fa-arrow-right active"></i>
@@ -75,7 +75,7 @@
                             <h4 class="meal-name mb-1">Eru</h4>
                             <p class="meal-desc mb-2">With Water Fufu</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="meal-price">$9.15</span>
+                                <span class="meal-price">4500 <span>FCFA</span></span>
                                 <div class="meal-nav">
                                     <i class="fas fa-arrow-left"></i>
                                     <i class="fas fa-arrow-right active"></i>
@@ -89,7 +89,7 @@
                             <h4 class="meal-name mb-1">Ndole</h4>
                             <p class="meal-desc mb-2">With Miondo</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="meal-price">$6.15</span>
+                                <span class="meal-price">3500 <span>FCFA</span></span>
                                 <div class="meal-nav">
                                     <i class="fas fa-arrow-left"></i>
                                     <i class="fas fa-arrow-right active"></i>
@@ -103,7 +103,7 @@
                             <h4 class="meal-name mb-1">Achu</h4>
                             <p class="meal-desc mb-2">With Yellow Soup</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="meal-price">$5.15</span>
+                                <span class="meal-price">3000 <span>FCFA</span></span>
                                 <div class="meal-nav">
                                     <i class="fas fa-arrow-left"></i>
                                     <i class="fas fa-arrow-right active"></i>
@@ -152,7 +152,7 @@
                     <img src="../images/jollof.png" alt="Jollof Rice" class="product-img">
                     <div class="product-name">Jollof Rice</div>
                     <p class="product-desc">Authentic smoky flavor with fried plantain.</p>
-                    <div class="product-price">5.15</div>
+                    <div class="product-price">2500</div>
                     <div class="product-footer">
                         <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
                         <div class="product-rating"><i class="fa fa-star"></i> 4.5</div>
@@ -165,7 +165,7 @@
                     <img src="../images/eru.png" alt="Eru" class="product-img">
                     <div class="product-name">Eru & Water Fufu</div>
                     <p class="product-desc">Rich traditional vegetables with fufu.</p>
-                    <div class="product-price">9.15</div>
+                    <div class="product-price">4500</div>
                     <div class="product-footer">
                         <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
                         <div class="product-rating"><i class="fa fa-star"></i> 4.8</div>
@@ -178,7 +178,7 @@
                     <img src="../images/ndole.png" alt="Ndole" class="product-img">
                     <div class="product-name">Ndole & Miondo</div>
                     <p class="product-desc">Creamy bitter leaves with cassava.</p>
-                    <div class="product-price">6.15</div>
+                    <div class="product-price">3500</div>
                     <div class="product-footer">
                         <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
                         <div class="product-rating"><i class="fa fa-star"></i> 4.7</div>
@@ -191,7 +191,7 @@
                     <img src="../images/achu.png" alt="Achu" class="product-img">
                     <div class="product-name">Achu & Yellow Soup</div>
                     <p class="product-desc">Taro paste with savory yellow soup.</p>
-                    <div class="product-price">5.15</div>
+                    <div class="product-price">3000</div>
                     <div class="product-footer">
                         <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
                         <div class="product-rating"><i class="fa fa-star"></i> 4.9</div>
@@ -204,7 +204,7 @@
                     <img src="../images/jollof.png" alt="Jollof Rice" class="product-img">
                     <div class="product-name">Jollof Delight</div>
                     <p class="product-desc">Extra spicy with choice of fish or chicken.</p>
-                    <div class="product-price">7.50</div>
+                    <div class="product-price">3500</div>
                     <div class="product-footer">
                         <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
                         <div class="product-rating"><i class="fa fa-star"></i> 4.6</div>
@@ -217,7 +217,7 @@
                     <img src="../images/eru.png" alt="Eru" class="product-img">
                     <div class="product-name">Special Eru</div>
                     <p class="product-desc">Extra kanda and smoked fish portions.</p>
-                    <div class="product-price">12.00</div>
+                    <div class="product-price">5500</div>
                     <div class="product-footer">
                         <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
                         <div class="product-rating"><i class="fa fa-star"></i> 5.0</div>

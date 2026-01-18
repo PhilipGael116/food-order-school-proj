@@ -86,10 +86,10 @@
 
                     <div class="total-display">
                         <span>Total Amount:</span>
-                        <span class="amount">$129</span>
+                        <span class="amount">11000 FCFA</span>
                     </div>
 
-                    <button type="submit" class="btn-pay">Pay $129</button>
+                    <button type="submit" class="btn-pay">Pay 11000 FCFA</button>
                 </form>
             </div>
         </div>

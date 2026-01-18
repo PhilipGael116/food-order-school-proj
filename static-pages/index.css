@@ -284,11 +284,9 @@ p.p2 {
     color: var(--color-gr);
 }
 
-.meal-price::before {
-    content: '$';
-    color: #e94339;
+.meal-price span {
     font-size: 12px;
-    margin-right: 2px;
+    color: #e94339;
 }
 
 .meal-nav i {
@@ -520,8 +518,8 @@ p.p2 {
     color: var(--color-black);
 }
 
-.product-price::before {
-    content: '$ ';
+.product-price::after {
+    content: ' FCFA';
     color: #e94339;
     font-size: 14px;
     font-weight: 700;

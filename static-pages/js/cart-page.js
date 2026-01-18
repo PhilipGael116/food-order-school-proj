@@ -55,7 +55,7 @@ $(document).ready(function () {
         const $tbody = $('.cart-table tbody');
         let html = '';
         cart.forEach(item => {
-            const subtotal = (item.price * item.quantity).toFixed(2);
+            const subtotal = item.price * item.quantity;
             html += `
                 <tr data-item-id="${item.id}">
                     <td>
@@ -68,7 +68,7 @@ $(document).ready(function () {
                         </div>
                     </td>
                     <td>
-                        <span class="cart-price">$${item.price.toFixed(2)}</span>
+                        <span class="cart-price">${item.price} FCFA</span>
                     </td>
                     <td>
                         <div class="quantity-control">
@@ -78,7 +78,7 @@ $(document).ready(function () {
                         </div>
                     </td>
                     <td>
-                        <span class="cart-subtotal">$${subtotal}</span>
+                        <span class="cart-subtotal">${subtotal} FCFA</span>
                     </td>
                 </tr>
             `;
@@ -101,8 +101,8 @@ $(document).ready(function () {
 
         const total = subtotal + shipping;
 
-        $('.totals-row span:last-child').first().text(`$${subtotal.toFixed(2)}`);
-        $('.total-amount-row .text-tangerine').text(`$${total.toFixed(2)}`);
+        $('.totals-row span:last-child').first().text(`${subtotal} FCFA`);
+        $('.total-amount-row .text-tangerine').text(`${total} FCFA`);
     }
 
     // Handle quantity increase
