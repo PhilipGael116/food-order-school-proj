@@ -8,7 +8,7 @@
         <nav class="nav d-none d-lg-block">
             <a href="../pages/home.php">Home</a>
             <a href="../pages/menu.php">Menu</a>
-            <a href="../pages/about.php">About Us</a>
+            <a href="../pages/about.php">About</a>
         </nav>
         <div class="header-right d-flex align-items-center">
             <div class="icons">
