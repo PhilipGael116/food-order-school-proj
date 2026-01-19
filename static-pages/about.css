@@ -1,5 +1,5 @@
 /* ============================================
-   BOOTSTRAP UTILITY CLASSES
+   CUSTOM COLOR & TEXT UTILITIES
    ============================================ */
 .bg-light-tangerine {
     background-color: var(--color-light-tangerine) !important;
@@ -9,16 +9,8 @@
     color: var(--color-tangerine) !important;
 }
 
-.text-muted {
-    color: var(--color-gray) !important;
-}
-
-.fw-900 {
-    font-weight: 900;
-}
-
-.letter-spacing {
-    letter-spacing: 0.5px;
+.highlight {
+    color: var(--color-tangerine);
 }
 
 /* ============================================
