@@ -2,15 +2,11 @@
 CREATE DATABASE IF NOT EXISTS restaurant CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE restaurant;
 
--- Users table
+-- Users table (simplified - only email and password)
 CREATE TABLE IF NOT EXISTS users (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    phone VARCHAR(20) NULL,
-    address TEXT NULL,
-    role ENUM('customer', 'admin') DEFAULT 'customer',
     created_at TIMESTAMP NULL,
     updated_at TIMESTAMP NULL
 );
@@ -80,16 +76,13 @@ CREATE TABLE IF NOT EXISTS order_items (
     FOREIGN KEY (menu_item_id) REFERENCES menu_items(id) ON DELETE CASCADE
 );
 
--- Insert sample data
-INSERT INTO users (name, email, password, phone, address, role, created_at, updated_at) VALUES
-('Admin User', 'admin@restaurant.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+237123456789', 'Yaoundé, Cameroon', 'admin', NOW(), NOW()),
-('Philip Gael', 'philip@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '+237987654321', 'Douala, Cameroon', 'customer', NOW(), NOW());
-
+-- Insert sample categories
 INSERT INTO categories (name, slug, is_active, `order`, created_at, updated_at) VALUES
 ('Traditional Dishes', 'traditional-dishes', TRUE, 1, NOW(), NOW()),
 ('Special Delights', 'special-delights', TRUE, 2, NOW(), NOW()),
 ('Local Beverages', 'local-beverages', TRUE, 3, NOW(), NOW());
 
+-- Insert menu items
 INSERT INTO menu_items (category_id, name, slug, description, price, is_available, is_featured, image, created_at, updated_at) VALUES
 (1, 'Ndole & Miondo', 'ndole---miondo', 'Authentic Cameroonian meal prepared with fresh ingredients.', 3500, TRUE, TRUE, '../images/ndole.png', NOW(), NOW()),
 (1, 'Eru & Water Fufu', 'eru---water-fufu', 'Authentic Cameroonian meal prepared with fresh ingredients.', 3500, TRUE, TRUE, '../images/eru.png', NOW(), NOW()),

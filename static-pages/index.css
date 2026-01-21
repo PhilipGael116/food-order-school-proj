@@ -339,13 +339,24 @@ p.p2 {
     color: var(--color-tangerine);
 }
 
+.main-header .icons {
+    display: flex;
+    align-items: center;
+}
+
 .main-header .icons a {
     margin-left: 1.2rem;
     font-size: 20px;
     color: var(--color-black);
     transition: 0.3s ease;
     text-decoration: none;
-    display: inline-block;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.main-header .icons.is-logged-in a[href*="cart.php"] {
+    margin-right: 25px;
 }
 
 .main-header .icons a:hover {

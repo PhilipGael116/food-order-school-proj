@@ -3,7 +3,7 @@
  */
 class APIService {
     constructor() {
-        this.baseURL = 'http://localhost/food-order-school-proj/backend-simple';
+        this.baseURL = 'http://localhost/food-order-school-proj/backend-simple/index.php';
         this.tokenKey = 'gaels_kitchen_token';
         this.userKey = 'gaels_kitchen_user';
     }

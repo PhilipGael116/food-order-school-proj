@@ -26,13 +26,27 @@ try {
 // Simple router
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = str_replace('/food-order-school-proj/backend-simple', '', $uri);
+$uri = str_replace('/index.php', '', $uri);
+$uri = rtrim($uri, '/');
+if (empty($uri)) $uri = '/';
 $method = $_SERVER['REQUEST_METHOD'];
 
 // Get JSON input
 $input = json_decode(file_get_contents('php://input'), true) ?? [];
 
-// REGISTER/LOGIN ENDPOINT
-if ($uri === '/api/register' && $method === 'POST') {
+// Debug output - check what URI we're getting
+if (isset($_GET['debug'])) {
+    echo json_encode([
+        'uri' => $uri,
+        'method' => $method,
+        'input' => $input,
+        'raw_uri' => $_SERVER['REQUEST_URI']
+    ]);
+    exit;
+}
+
+// REGISTER/LOGIN ENDPOINT - handle both /api/register and /register
+if (($uri === '/api/register' || $uri === '/register') && $method === 'POST') {
     $email = $input['email'] ?? '';
     $password = $input['password'] ?? '';
     
@@ -56,7 +70,6 @@ if ($uri === '/api/register' && $method === 'POST') {
                 'data' => [
                     'user' => [
                         'id' => $user['id'],
-                        'name' => $user['name'],
                         'email' => $user['email']
                     ],
                     'token' => $token,
@@ -67,12 +80,11 @@ if ($uri === '/api/register' && $method === 'POST') {
             echo json_encode(['success' => false, 'message' => 'Invalid credentials for this email.']);
         }
     } else {
-        // Register
-        $name = 'User ' . explode('@', $email)[0];
+        // Register new user
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role, created_at, updated_at) VALUES (?, ?, ?, 'customer', NOW(), NOW())");
-        $stmt->execute([$name, $email, $hashedPassword]);
+        $stmt = $pdo->prepare("INSERT INTO users (email, password, created_at, updated_at) VALUES (?, ?, NOW(), NOW())");
+        $stmt->execute([$email, $hashedPassword]);
         
         $userId = $pdo->lastInsertId();
         $token = bin2hex(random_bytes(32));
@@ -83,7 +95,6 @@ if ($uri === '/api/register' && $method === 'POST') {
             'data' => [
                 'user' => [
                     'id' => $userId,
-                    'name' => $name,
                     'email' => $email
                 ],
                 'token' => $token,
@@ -94,8 +105,8 @@ if ($uri === '/api/register' && $method === 'POST') {
     exit;
 }
 
-// PLACE ORDER ENDPOINT
-if ($uri === '/api/orders' && $method === 'POST') {
+// PLACE ORDER ENDPOINT - handle both /api/orders and /orders
+if (($uri === '/api/orders' || $uri === '/orders') && $method === 'POST') {
     $address = $input['delivery_address'] ?? '';
     $phone = $input['delivery_phone'] ?? '';
     $items = $input['items'] ?? [];

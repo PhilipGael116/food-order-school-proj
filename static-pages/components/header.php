@@ -75,11 +75,16 @@
         if (window.apiService) {
             const user = window.apiService.getUser();
             if (window.apiService.isAuthenticated() && user) {
+                // Shift cart slightly to the left when logged in
+                $('.icons a[href*="cart.php"]').addClass('me-5');
+                $('.icons').addClass('is-logged-in');
+
                 // Change user icon/link to a "logged in" state
+                const userName = user.email ? user.email.split('@')[0] : 'User';
                 const userHtml = `
-                    <div class="user-profile ms-3 d-flex align-items-center">
-                        <span class="d-none d-md-inline me-2 small fw-bold" style="color: #ff8c00;">${user.name.split(' ')[0]}</span>
-                        <a href="#" id="logout-btn" title="Logout" style="color: #ff8c00; text-decoration: none;"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    <div class="user-profile d-flex align-items-center">
+                        <span class="d-none d-md-inline me-2 small fw-bold" style="color: #ff8c00;">${userName}</span>
+                        <a href="#" id="logout-btn" title="Logout" style="color: #ff8c00; text-decoration: none; margin-left: 10px;"><i class="fa-solid fa-right-from-bracket"></i></a>
                     </div>
                 `;
                 $('.icons a[href*="register.php"]').after(userHtml).remove();
