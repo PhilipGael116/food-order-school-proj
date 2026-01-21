@@ -1,0 +1,648 @@
+/* ============================================
+   CUSTOM COLOR & TEXT UTILITIES
+   ============================================ */
+.bg-light-tangerine {
+    background-color: var(--color-light-tangerine) !important;
+}
+
+.text-tangerine {
+    color: var(--color-tangerine) !important;
+}
+
+.highlight {
+    color: var(--color-tangerine);
+}
+
+/* ============================================
+   CUSTOM ANIMATIONS
+   ============================================ */
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.about-hero {
+    background: linear-gradient(135deg, rgba(249, 148, 42, 0.85) 0%, rgba(249, 148, 42, 0.85) 30%, rgba(253, 232, 208, 0.85) 100%), url('../static-pages/images/chef.png') center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInScale 1s ease-out;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -50px;
+    right: -50px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.about-hero::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    bottom: -30px;
+    left: -30px;
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+.hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    animation: slideInDown 0.8s ease-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.1;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: slideInUp 0.8s ease-out;
+    opacity: 0.95;
+}
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+.about-section {
+    padding: 80px 0;
+    background: #ffffff;
+}
+
+.about-header {
+    margin-bottom: 50px;
+    animation: slideInUp 0.8s ease-out 0.1s both;
+}
+
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--color-light-tangerine);
+    color: var(--color-tangerine);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.section-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--color-tangerine);
+    border-radius: 50%;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--color-black);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.section-title .highlight {
+    color: var(--color-tangerine);
+}
+
+.section-desc {
+    font-size: 1rem;
+    color: var(--color-gray);
+    line-height: 1.8;
+    max-width: 600px;
+}
+
+/* ============================================
+   STORY SECTION
+   ============================================ */
+.story-row {
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.story-content {
+    animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+.story-image {
+    position: relative;
+    height: 450px;
+    animation: fadeInScale 0.8s ease-out 0.3s both;
+}
+
+.story-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.story-image::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    background: var(--color-light-tangerine);
+    border-radius: 20px;
+    z-index: -1;
+}
+
+/* ============================================
+   FEATURES GRID
+   ============================================ */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.feature-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    padding: 40px 30px;
+    border-radius: 16px;
+    border: 1px solid #f0f0f0;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--color-tangerine);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease-out;
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.feature-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 60px rgba(249, 148, 42, 0.15);
+    background: linear-gradient(135deg, #ffffff 0%, #fffbf5 100%);
+    border-color: var(--color-light-tangerine);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #f9942a 0%, #ffb366 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 2.2rem;
+    color: white;
+    transition: all 0.4s ease-out;
+    box-shadow: 0 10px 30px rgba(249, 148, 42, 0.3);
+}
+
+.feature-card:hover .feature-icon {
+    background: linear-gradient(135deg, #000000 0%, #3a3a3a 100%);
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card h4 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--color-black);
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.feature-card p {
+    color: var(--color-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ============================================
+   TEAM SECTION
+   ============================================ */
+.team-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+}
+
+.team-header {
+    text-align: center;
+    margin-bottom: 70px;
+    animation: slideInUp 0.8s ease-out both;
+}
+
+.team-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--color-black);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.team-title .highlight {
+    color: var(--color-tangerine);
+}
+
+.team-subtitle {
+    font-size: 1rem;
+    color: var(--color-gray);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.team-member-card {
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+}
+
+.team-member-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.team-member-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.team-member-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.team-member-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.member-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    height: 350px;
+    background: linear-gradient(135deg, #f9942a 0%, #ffb366 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 40px rgba(249, 148, 42, 0.2);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.member-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    height: 350px;
+    background: linear-gradient(135deg, #f9942a 0%, #ffb366 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 40px rgba(249, 148, 42, 0.2);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.team-member-card:hover .member-image {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(249, 148, 42, 0.35);
+}
+
+.team-member-card:hover .member-image img {
+    transform: scale(1.08);
+}
+
+.member-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.team-member-card:hover .member-image-wrapper {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(249, 148, 42, 0.35);
+}
+
+.team-member-card:hover .member-image-wrapper img {
+    transform: scale(1.08);
+}
+
+.member-info {
+    transition: all 0.3s ease;
+}
+
+.member-name {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--color-black);
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.member-role {
+    color: var(--color-tangerine);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.member-social {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.member-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-light-tangerine);
+    color: var(--color-tangerine);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    font-size: 0.9rem;
+    border: 2px solid transparent;
+}
+
+.team-member-card:hover .member-social a {
+    background: var(--color-tangerine);
+    color: var(--color-light-tangerine);
+    transform: translateY(-5px);
+}
+
+.team-member-card:hover .member-social a:hover {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(249, 148, 42, 0.4);
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta-section {
+    background: linear-gradient(135deg, #f9942a 0%, #ff9d3d 50%, #fde8d0 100%);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    animation: fadeInScale 1s ease-out 0.5s both;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+    animation: float 8s ease-in-out infinite;
+}
+
+.cta-section::after {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    bottom: -80px;
+    left: -80px;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    opacity: 0.95;
+}
+
+.cta-btn {
+    background: white;
+    color: var(--color-tangerine);
+    padding: 15px 45px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+    background: var(--color-light-tangerine);
+    color: var(--color-black);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .team-title {
+        font-size: 2rem;
+    }
+
+    .story-row {
+        gap: 30px;
+        flex-direction: column;
+    }
+
+    .story-image {
+        height: 300px;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section {
+        padding: 60px 0;
+    }
+
+    .team-section {
+        padding: 60px 0;
+    }
+
+    .cta-section {
+        padding: 60px 0;
+    }
+
+    .cta-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .cta-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .team-title {
+        font-size: 1.6rem;
+    }
+
+    .feature-card {
+        padding: 30px 20px;
+    }
+
+    .member-image-wrapper {
+        height: 280px;
+    }
+}
