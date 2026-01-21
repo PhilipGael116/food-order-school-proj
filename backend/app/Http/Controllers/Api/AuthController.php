@@ -13,11 +13,8 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
-            'phone' => 'nullable|string|max:20',
-            'address' => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
@@ -27,26 +24,39 @@ class AuthController extends Controller
             ], 422);
         }
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'role' => 'customer',
-        ]);
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            // Existing User: Check Password
+            if (!Hash::check($request->password, $user->password)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Invalid credentials for this email.'
+                ], 401);
+            }
+            $message = 'Welcome back!';
+        } else {
+            // New User: Create Account
+            $user = User::create([
+                'name' => 'User ' . substr($request->email, 0, strpos($request->email, '@')),
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 'customer',
+            ]);
+            $message = 'Account created successfully!';
+        }
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'success' => true,
-            'message' => 'User registered successfully',
+            'message' => $message,
             'data' => [
                 'user' => $user,
                 'token' => $token,
                 'token_type' => 'Bearer',
             ]
-        ], 201);
+        ], 200);
     }
 
     public function login(Request $request)

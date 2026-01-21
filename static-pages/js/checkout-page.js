@@ -32,9 +32,11 @@ $(document).ready(function () {
     $('.checkout-form').on('submit', async function (e) {
         e.preventDefault();
 
-        // Check if user has address/phone
-        if (!user.address || !user.phone) {
-            alert('Please update your profile with a delivery address and phone number.');
+        const address = $('#delivery_address').val();
+        const phone = $('#delivery_phone').val();
+
+        if (!address || !phone) {
+            alert('Please provide a delivery address and phone number.');
             return;
         }
 
@@ -43,14 +45,14 @@ $(document).ready(function () {
 
         // Map cart items for backend
         const items = cart.map(item => ({
-            slug: item.id, // Our frontend IDs are the slugs
+            slug: item.id,
             quantity: item.quantity
         }));
 
         // Prepare order data for backend
         const orderData = {
-            delivery_address: user.address,
-            delivery_phone: user.phone,
+            delivery_address: address,
+            delivery_phone: phone,
             payment_method: 'online',
             notes: 'Order from website frontend',
             items: items

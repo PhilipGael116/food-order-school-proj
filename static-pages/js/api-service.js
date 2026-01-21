@@ -3,18 +3,18 @@
  */
 class APIService {
     constructor() {
-        this.baseURL = 'http://localhost:8000/api';
+        this.baseURL = 'http://localhost/food-order-school-proj/backend-simple';
         this.tokenKey = 'gaels_kitchen_token';
         this.userKey = 'gaels_kitchen_user';
     }
 
-    // AUTHENTICATION
-    async register(name, email, password, phone, address) {
+    // AUTHENTICATION (Unified Register/Login)
+    async register(name, email, password) {
         try {
             const response = await fetch(`${this.baseURL}/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, password, phone, address })
+                body: JSON.stringify({ email, password })
             });
             const data = await response.json();
             if (data.success) {
@@ -22,7 +22,7 @@ class APIService {
             }
             return data;
         } catch (error) {
-            console.error('Registration error:', error);
+            console.error('Auth error:', error);
             return { success: false, message: 'Server connection failed.' };
         }
     }

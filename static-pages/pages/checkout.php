@@ -52,9 +52,23 @@
                 <!-- Form -->
                 <form class="checkout-form">
                     <div class="form-group">
+                        <label>Delivery Address <span>*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" id="delivery_address" placeholder="Neighborhood, Street Name, City" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number <span>*</span></label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="delivery_phone" placeholder="+237 ..." required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label>Card Number <span>*</span></label>
                         <div class="input-wrapper">
-                            <input type="text" placeholder="5678 **** **** 1267">
+                            <input type="text" placeholder="5678 **** **** 1267" required>
                             <i class="far fa-eye-slash input-icon"></i>
                         </div>
                     </div>
