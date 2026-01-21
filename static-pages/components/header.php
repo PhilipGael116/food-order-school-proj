@@ -75,8 +75,7 @@
         if (window.apiService) {
             const user = window.apiService.getUser();
             if (window.apiService.isAuthenticated() && user) {
-                // Shift cart slightly to the left when logged in
-                $('.icons a[href*="cart.php"]').addClass('me-5');
+                // Add class to container for gap spacing
                 $('.icons').addClass('is-logged-in');
 
                 // Change user icon/link to a "logged in" state
