@@ -70,10 +70,29 @@ class OrderController extends Controller
         $user = $request->user();
         $cartItems = Cart::where('user_id', $user->id)->with('menuItem')->get();
 
+        // If DB cart is empty, check if items were sent in the request
+        if ($cartItems->isEmpty() && $request->has('items')) {
+            $requestItems = $request->items; // Expecting array of {slug: string, quantity: int}
+            $preparedItems = [];
+            
+            foreach ($requestItems as $item) {
+                $menuItem = MenuItem::where('slug', $item['slug'])->first();
+                if ($menuItem) {
+                    $preparedItems[] = (object)[
+                        'menuItem' => $menuItem,
+                        'quantity' => $item['quantity'],
+                        'menu_item_id' => $menuItem->id,
+                        'special_instructions' => $item['special_instructions'] ?? null
+                    ];
+                }
+            }
+            $cartItems = collect($preparedItems);
+        }
+
         if ($cartItems->isEmpty()) {
             return response()->json([
                 'success' => false,
-                'message' => 'Cart is empty'
+                'message' => 'Your cart is empty. Please add items before checking out.'
             ], 400);
         }
 
@@ -89,8 +108,8 @@ class OrderController extends Controller
             $subtotal += $item->quantity * $item->menuItem->final_price;
         }
 
-        $tax = 0; // No separate tax display for now
-        $deliveryFee = 1000; // 1000 FCFA delivery fee
+        $tax = 0;
+        $deliveryFee = 1000;
         $discount = 0;
 
         // Apply coupon if provided
@@ -113,7 +132,7 @@ class OrderController extends Controller
                 'user_id' => $user->id,
                 'order_number' => Order::generateOrderNumber(),
                 'status' => 'pending',
-                'payment_status' => 'pending',
+                'payment_status' => $request->payment_method === 'online' ? 'paid' : 'pending',
                 'payment_method' => $request->payment_method,
                 'subtotal' => $subtotal,
                 'tax' => $tax,
@@ -134,12 +153,11 @@ class OrderController extends Controller
                     'item_name' => $cartItem->menuItem->name,
                     'quantity' => $cartItem->quantity,
                     'price' => $cartItem->menuItem->final_price,
-                    'special_instructions' => $cartItem->special_instructions,
+                    'special_instructions' => $cartItem->special_instructions ?? null,
                 ]);
-
             }
 
-            // Clear cart
+            // Clear DB cart if it was used
             Cart::where('user_id', $user->id)->delete();
 
             DB::commit();

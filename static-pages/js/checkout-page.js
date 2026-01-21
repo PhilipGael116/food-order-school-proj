@@ -1,87 +1,70 @@
-// Checkout Page Handler
+// Checkout Page Logic
 $(document).ready(function () {
-    // Check if user is logged in
-    if (!authManager.isLoggedIn()) {
+    // 1. Check if user is authenticated
+    if (!window.apiService.isAuthenticated()) {
         alert('Please login or register to complete your order.');
         window.location.href = 'register.php';
         return;
     }
 
-    updateCheckoutTotal();
+    const user = window.apiService.getUser();
+    const cart = window.cartManager.getCart();
 
-    function updateCheckoutTotal() {
-        const subtotal = window.cartManager.getTotal();
-        // Flat rate 1000 FCFA
-        const shipping = subtotal > 0 ? 1000 : 0;
-        const total = subtotal + shipping;
-
-        $('#subtotal-display').text(`${subtotal} FCFA`);
-        $('.total-display .amount').text(`${total} FCFA`);
-        $('.btn-pay').text(`Place Order (${total} FCFA)`);
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        window.location.href = 'menu.php';
+        return;
     }
 
-    // Handle form submission
-    $('#checkout-form').on('submit', async function (e) {
+    // 2. Update the display total
+    function updateCheckoutDisplay() {
+        const subtotal = window.cartManager.getTotal();
+        const shipping = 1000; // Flat rate
+        const total = subtotal + shipping;
+
+        $('.amount').text(`${total} FCFA`);
+        $('.btn-pay').text(`Pay ${total} FCFA`);
+    }
+
+    updateCheckoutDisplay();
+
+    // 3. Handle Payment Form Submission
+    $('.checkout-form').on('submit', async function (e) {
         e.preventDefault();
 
-        const cart = cartManager.getCart();
-        if (cart.length === 0) {
-            alert('Your cart is empty.');
+        // Check if user has address/phone
+        if (!user.address || !user.phone) {
+            alert('Please update your profile with a delivery address and phone number.');
             return;
         }
 
         const btn = $('.btn-pay');
-        const originalText = btn.text();
-        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Processing...');
+        btn.prop('disabled', true).text('Processing...');
 
-        try {
-            // 1. Sync cart to backend
-            // Clear backend cart first
-            await fetch(`${CONFIG.API_URL}/cart/clear`, {
-                method: 'POST',
-                headers: authManager.getAuthHeaders()
-            });
+        // Map cart items for backend
+        const items = cart.map(item => ({
+            slug: item.id, // Our frontend IDs are the slugs
+            quantity: item.quantity
+        }));
 
-            // Add each item to backend cart
-            for (const item of cart) {
-                await fetch(`${CONFIG.API_URL}/cart/add`, {
-                    method: 'POST',
-                    headers: authManager.getAuthHeaders(),
-                    body: JSON.stringify({
-                        menu_item_id: item.id,
-                        quantity: item.quantity
-                    })
-                });
-            }
+        // Prepare order data for backend
+        const orderData = {
+            delivery_address: user.address,
+            delivery_phone: user.phone,
+            payment_method: 'online',
+            notes: 'Order from website frontend',
+            items: items
+        };
 
-            // 2. Place order
-            const orderData = {
-                delivery_address: $('#address').val() || 'No address provided', // Need to check if there's an address field
-                delivery_phone: $('#phone').val() || '000000000',
-                payment_method: 'cash', // Default for now
-                notes: $('#notes').val() || ''
-            };
+        const response = await window.apiService.placeOrder(orderData);
 
-            const response = await fetch(`${CONFIG.API_URL}/orders`, {
-                method: 'POST',
-                headers: authManager.getAuthHeaders(),
-                body: JSON.stringify(orderData)
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                alert('Order placed successfully!');
-                cartManager.clearCart();
-                window.location.href = 'home.php'; // Or a success page
-            } else {
-                alert('Failed to place order: ' + (data.message || 'Unknown error'));
-                btn.prop('disabled', false).text(originalText);
-            }
-        } catch (error) {
-            console.error('Checkout error:', error);
-            alert('Something went wrong. Please try again.');
-            btn.prop('disabled', false).text(originalText);
+        if (response.success) {
+            alert(`Order #${response.data.order_number} placed successfully! Thank you for ordering from Gael's Kitchen.`);
+            window.cartManager.clearCart();
+            window.location.href = 'home.php';
+        } else {
+            alert('Order failed: ' + (response.message || 'Unknown error'));
+            btn.prop('disabled', false).text(`Pay ${window.cartManager.getTotal() + 1000} FCFA`);
         }
     });
 });

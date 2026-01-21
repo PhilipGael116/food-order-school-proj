@@ -36,103 +36,77 @@ class DatabaseSeeder extends Seeder
 
         // Create categories
         $categories = [
-            [
-                'name' => 'Traditional Dishes',
-                'description' => 'Authentic Cameroonian traditional meals',
-                'order' => 1,
-            ],
-            [
-                'name' => 'Special Delights',
-                'description' => 'Chef\'s special Cameroonian recipes',
-                'order' => 2,
-            ],
-            [
-                'name' => 'Local Beverages',
-                'description' => 'Refreshing local drinks',
-                'order' => 3,
-            ],
+            ['name' => 'Traditional Dishes', 'order' => 1],
+            ['name' => 'Special Delights', 'order' => 2],
+            ['name' => 'Local Beverages', 'order' => 3],
         ];
 
         foreach ($categories as $category) {
             Category::create([
                 'name' => $category['name'],
                 'slug' => Str::slug($category['name']),
-                'description' => $category['description'],
                 'is_active' => true,
                 'order' => $category['order'],
             ]);
         }
 
-        // Create menu items
+        // Create menu items matching frontend IDs
         $menuItems = [
-            // Traditional Dishes
             [
                 'category_id' => 1,
-                'name' => 'Special Eru & Water Fufu',
-                'description' => 'Fine shredded Gnetum africanum leaves cooked with waterleaf, palm oil, and assorted meats, served with water fufu.',
+                'name' => 'Ndole & Miondo',
+                'slug' => 'ndole---miondo',
                 'price' => 3500,
-                'is_featured' => true,
-                'image' => '../images/eru.png',
-            ],
-            [
-                'category_id' => 1,
-                'name' => 'Creamy Ndole & Miondo',
-                'description' => 'Prepared with bitter leaves, peanuts, and choice of meat or fish, served with traditional Miondo.',
-                'price' => 3500,
-                'is_featured' => true,
                 'image' => '../images/ndole.png',
             ],
             [
                 'category_id' => 1,
-                'name' => 'Achu & Yellow Soup',
-                'description' => 'Pounded cocoyam served with a spicy, aromatic yellow limestone soup and various meats.',
-                'price' => 3000,
-                'is_featured' => true,
-                'image' => '../images/achu.png',
+                'name' => 'Eru & Water Fufu',
+                'slug' => 'eru---water-fufu',
+                'price' => 3500,
+                'image' => '../images/eru.png',
             ],
             [
                 'category_id' => 1,
-                'name' => 'Kati Kati & Fufu Corn',
-                'description' => 'Grilled chicken cooked in a special traditional sauce, served with yellow corn fufu.',
-                'price' => 4000,
-                'is_featured' => false,
-                'image' => '../images/katikati.png',
+                'name' => 'Achu & Yellow Soup',
+                'slug' => 'achu---yellow-soup',
+                'price' => 3000,
+                'image' => '../images/achu.png',
             ],
-
-            // Special Delights
             [
                 'category_id' => 2,
-                'name' => 'Jollof Rice & Chicken',
-                'description' => 'Classic spicy Jollof rice served with golden fried chicken and plantains.',
+                'name' => 'Perfect Jollof Rice',
+                'slug' => 'perfect-jollof-rice',
                 'price' => 2500,
-                'is_featured' => true,
                 'image' => '../images/jollof.png',
+            ],
+            [
+                'category_id' => 1,
+                'name' => 'Yellow Koki Beans',
+                'slug' => 'yellow-koki-beans',
+                'price' => 2000,
+                'image' => '../images/ndole.png',
             ],
             [
                 'category_id' => 2,
                 'name' => 'Poulet DG',
-                'description' => 'Director General Chicken - a delicious mix of chicken, plantains, and vegetables in tomato sauce.',
+                'slug' => 'poulet-dg',
                 'price' => 5000,
-                'is_featured' => true,
-                'image' => '../images/poulet_dg.png',
+                'image' => '../images/eru.png',
             ],
             [
                 'category_id' => 2,
-                'name' => 'Roasted Fish & Plantains',
-                'description' => 'Spicy charcoal-grilled fish served with roasted plantains and pepper sauce.',
-                'price' => 4500,
-                'is_featured' => false,
-                'image' => '../images/fish.png',
+                'name' => 'Kati Kati Chicken',
+                'slug' => 'kati-kati-chicken',
+                'price' => 4000,
+                'image' => '../images/testimonial-platter.png',
             ],
-
-            // Beverages
             [
-                'category_id' => 3,
-                'name' => 'Fresh Palm Wine',
-                'description' => 'Sweet, freshly tapped local palm wine.',
-                'price' => 1500,
-                'is_featured' => false,
-                'image' => '../images/palmwine.png',
+                'category_id' => 1,
+                'name' => 'Okok',
+                'slug' => 'okok',
+                'price' => 2500,
+                'image' => '../images/ndole.png',
             ],
         ];
 
@@ -140,16 +114,16 @@ class DatabaseSeeder extends Seeder
             MenuItem::create([
                 'category_id' => $item['category_id'],
                 'name' => $item['name'],
-                'slug' => Str::slug($item['name']),
-                'description' => $item['description'],
+                'slug' => $item['slug'],
+                'description' => 'Authentic Cameroonian meal prepared with fresh ingredients.',
                 'price' => $item['price'],
                 'is_available' => true,
-                'is_featured' => $item['is_featured'],
+                'is_featured' => true,
                 'image' => $item['image'],
             ]);
         }
 
-        // Create coupons
+        // Create coupon
         Coupon::create([
             'code' => 'WELCOMEFCFA',
             'type' => 'fixed',
