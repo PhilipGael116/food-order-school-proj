@@ -89,8 +89,8 @@ class OrderController extends Controller
             $subtotal += $item->quantity * $item->menuItem->final_price;
         }
 
-        $tax = $subtotal * 0.1; // 10% tax
-        $deliveryFee = 5.00;
+        $tax = 0; // No separate tax display for now
+        $deliveryFee = 1000; // 1000 FCFA delivery fee
         $discount = 0;
 
         // Apply coupon if provided
@@ -137,10 +137,6 @@ class OrderController extends Controller
                     'special_instructions' => $cartItem->special_instructions,
                 ]);
 
-                // Update stock if applicable
-                if ($cartItem->menuItem->stock !== null) {
-                    $cartItem->menuItem->decrement('stock', $cartItem->quantity);
-                }
             }
 
             // Clear cart
@@ -184,12 +180,6 @@ class OrderController extends Controller
 
         $order->update(['status' => 'cancelled']);
 
-        // Restore stock
-        foreach ($order->items as $item) {
-            if ($item->menuItem->stock !== null) {
-                $item->menuItem->increment('stock', $item->quantity);
-            }
-        }
 
         return response()->json([
             'success' => true,

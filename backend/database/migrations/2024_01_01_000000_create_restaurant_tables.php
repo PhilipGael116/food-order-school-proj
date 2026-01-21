@@ -47,13 +47,6 @@ return new class extends Migration
             $table->json('images')->nullable(); // Multiple images
             $table->boolean('is_available')->default(true);
             $table->boolean('is_featured')->default(false);
-            $table->boolean('is_vegetarian')->default(false);
-            $table->boolean('is_vegan')->default(false);
-            $table->integer('preparation_time')->nullable(); // in minutes
-            $table->integer('calories')->nullable();
-            $table->json('allergens')->nullable();
-            $table->json('ingredients')->nullable();
-            $table->integer('stock')->nullable();
             $table->timestamps();
         });
 

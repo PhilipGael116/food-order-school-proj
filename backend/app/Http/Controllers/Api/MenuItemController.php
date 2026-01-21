@@ -31,13 +31,6 @@ class MenuItemController extends Controller
             $query->featured();
         }
 
-        // Filter by dietary preferences
-        if ($request->has('vegetarian')) {
-            $query->where('is_vegetarian', true);
-        }
-        if ($request->has('vegan')) {
-            $query->where('is_vegan', true);
-        }
 
         // Search
         if ($request->has('search')) {
@@ -92,13 +85,6 @@ class MenuItemController extends Controller
             'images' => 'nullable|array',
             'is_available' => 'boolean',
             'is_featured' => 'boolean',
-            'is_vegetarian' => 'boolean',
-            'is_vegan' => 'boolean',
-            'preparation_time' => 'nullable|integer',
-            'calories' => 'nullable|integer',
-            'allergens' => 'nullable|array',
-            'ingredients' => 'nullable|array',
-            'stock' => 'nullable|integer',
         ]);
 
         if ($validator->fails()) {
@@ -119,13 +105,6 @@ class MenuItemController extends Controller
             'images' => $request->images,
             'is_available' => $request->is_available ?? true,
             'is_featured' => $request->is_featured ?? false,
-            'is_vegetarian' => $request->is_vegetarian ?? false,
-            'is_vegan' => $request->is_vegan ?? false,
-            'preparation_time' => $request->preparation_time,
-            'calories' => $request->calories,
-            'allergens' => $request->allergens,
-            'ingredients' => $request->ingredients,
-            'stock' => $request->stock,
         ]);
 
         return response()->json([
@@ -156,13 +135,6 @@ class MenuItemController extends Controller
             'images' => 'nullable|array',
             'is_available' => 'boolean',
             'is_featured' => 'boolean',
-            'is_vegetarian' => 'boolean',
-            'is_vegan' => 'boolean',
-            'preparation_time' => 'nullable|integer',
-            'calories' => 'nullable|integer',
-            'allergens' => 'nullable|array',
-            'ingredients' => 'nullable|array',
-            'stock' => 'nullable|integer',
         ]);
 
         if ($validator->fails()) {

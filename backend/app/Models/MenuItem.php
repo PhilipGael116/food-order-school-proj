@@ -20,23 +20,12 @@ class MenuItem extends Model
         'images',
         'is_available',
         'is_featured',
-        'is_vegetarian',
-        'is_vegan',
-        'preparation_time',
-        'calories',
-        'allergens',
-        'ingredients',
-        'stock',
     ];
 
     protected $casts = [
         'images' => 'array',
-        'allergens' => 'array',
-        'ingredients' => 'array',
         'is_available' => 'boolean',
         'is_featured' => 'boolean',
-        'is_vegetarian' => 'boolean',
-        'is_vegan' => 'boolean',
         'price' => 'decimal:2',
         'discount_price' => 'decimal:2',
     ];
@@ -61,11 +50,6 @@ class MenuItem extends Model
     public function getFinalPriceAttribute()
     {
         return $this->discount_price ?? $this->price;
-    }
-
-    public function getRatingAttribute()
-    {
-        return $this->reviews()->avg('rating') ?? 0;
     }
 
     public function scopeAvailable($query)

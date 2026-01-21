@@ -19,47 +19,37 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@restaurant.com',
             'password' => Hash::make('admin123'),
-            'phone' => '+1234567890',
-            'address' => '123 Admin Street',
+            'phone' => '+237123456789',
+            'address' => 'Yaoundé, Cameroon',
             'role' => 'admin',
         ]);
 
         // Create customer user
         User::create([
-            'name' => 'John Doe',
-            'email' => 'customer@example.com',
-            'password' => Hash::make('customer123'),
-            'phone' => '+0987654321',
-            'address' => '456 Customer Avenue',
+            'name' => 'Philip Gael',
+            'email' => 'philip@example.com',
+            'password' => Hash::make('password123'),
+            'phone' => '+237987654321',
+            'address' => 'Douala, Cameroon',
             'role' => 'customer',
         ]);
 
         // Create categories
         $categories = [
             [
-                'name' => 'Appetizers',
-                'description' => 'Start your meal with our delicious appetizers',
+                'name' => 'Traditional Dishes',
+                'description' => 'Authentic Cameroonian traditional meals',
                 'order' => 1,
             ],
             [
-                'name' => 'Main Courses',
-                'description' => 'Hearty and satisfying main dishes',
+                'name' => 'Special Delights',
+                'description' => 'Chef\'s special Cameroonian recipes',
                 'order' => 2,
             ],
             [
-                'name' => 'Desserts',
-                'description' => 'Sweet treats to end your meal',
+                'name' => 'Local Beverages',
+                'description' => 'Refreshing local drinks',
                 'order' => 3,
-            ],
-            [
-                'name' => 'Beverages',
-                'description' => 'Refreshing drinks and beverages',
-                'order' => 4,
-            ],
-            [
-                'name' => 'Salads',
-                'description' => 'Fresh and healthy salad options',
-                'order' => 5,
             ],
         ];
 
@@ -75,153 +65,74 @@ class DatabaseSeeder extends Seeder
 
         // Create menu items
         $menuItems = [
-            // Appetizers
+            // Traditional Dishes
             [
                 'category_id' => 1,
-                'name' => 'Spring Rolls',
-                'description' => 'Crispy vegetable spring rolls served with sweet chili sauce',
-                'price' => 8.99,
-                'is_vegetarian' => true,
+                'name' => 'Special Eru & Water Fufu',
+                'description' => 'Fine shredded Gnetum africanum leaves cooked with waterleaf, palm oil, and assorted meats, served with water fufu.',
+                'price' => 3500,
                 'is_featured' => true,
-                'preparation_time' => 10,
-                'calories' => 250,
+                'image' => '../images/eru.png',
             ],
             [
                 'category_id' => 1,
-                'name' => 'Buffalo Wings',
-                'description' => 'Spicy chicken wings with blue cheese dip',
-                'price' => 12.99,
-                'preparation_time' => 15,
-                'calories' => 450,
+                'name' => 'Creamy Ndole & Miondo',
+                'description' => 'Prepared with bitter leaves, peanuts, and choice of meat or fish, served with traditional Miondo.',
+                'price' => 3500,
+                'is_featured' => true,
+                'image' => '../images/ndole.png',
             ],
             [
                 'category_id' => 1,
-                'name' => 'Mozzarella Sticks',
-                'description' => 'Golden fried mozzarella with marinara sauce',
-                'price' => 9.99,
-                'is_vegetarian' => true,
-                'preparation_time' => 12,
-                'calories' => 380,
+                'name' => 'Achu & Yellow Soup',
+                'description' => 'Pounded cocoyam served with a spicy, aromatic yellow limestone soup and various meats.',
+                'price' => 3000,
+                'is_featured' => true,
+                'image' => '../images/achu.png',
+            ],
+            [
+                'category_id' => 1,
+                'name' => 'Kati Kati & Fufu Corn',
+                'description' => 'Grilled chicken cooked in a special traditional sauce, served with yellow corn fufu.',
+                'price' => 4000,
+                'is_featured' => false,
+                'image' => '../images/katikati.png',
             ],
 
-            // Main Courses
+            // Special Delights
             [
                 'category_id' => 2,
-                'name' => 'Grilled Salmon',
-                'description' => 'Fresh Atlantic salmon with lemon butter sauce and vegetables',
-                'price' => 24.99,
+                'name' => 'Jollof Rice & Chicken',
+                'description' => 'Classic spicy Jollof rice served with golden fried chicken and plantains.',
+                'price' => 2500,
                 'is_featured' => true,
-                'preparation_time' => 25,
-                'calories' => 520,
+                'image' => '../images/jollof.png',
             ],
             [
                 'category_id' => 2,
-                'name' => 'Beef Burger',
-                'description' => 'Angus beef burger with cheese, lettuce, tomato, and fries',
-                'price' => 16.99,
-                'discount_price' => 14.99,
-                'preparation_time' => 20,
-                'calories' => 780,
-            ],
-            [
-                'category_id' => 2,
-                'name' => 'Vegetarian Pasta',
-                'description' => 'Penne pasta with fresh vegetables in tomato basil sauce',
-                'price' => 15.99,
-                'is_vegetarian' => true,
-                'is_vegan' => true,
-                'preparation_time' => 18,
-                'calories' => 420,
-            ],
-            [
-                'category_id' => 2,
-                'name' => 'Chicken Tikka Masala',
-                'description' => 'Tender chicken in creamy tomato curry sauce with basmati rice',
-                'price' => 18.99,
+                'name' => 'Poulet DG',
+                'description' => 'Director General Chicken - a delicious mix of chicken, plantains, and vegetables in tomato sauce.',
+                'price' => 5000,
                 'is_featured' => true,
-                'preparation_time' => 22,
-                'calories' => 650,
-            ],
-
-            // Salads
-            [
-                'category_id' => 5,
-                'name' => 'Caesar Salad',
-                'description' => 'Crisp romaine lettuce with Caesar dressing, croutons, and parmesan',
-                'price' => 11.99,
-                'is_vegetarian' => true,
-                'preparation_time' => 8,
-                'calories' => 320,
+                'image' => '../images/poulet_dg.png',
             ],
             [
-                'category_id' => 5,
-                'name' => 'Greek Salad',
-                'description' => 'Fresh vegetables with feta cheese and olives',
-                'price' => 10.99,
-                'is_vegetarian' => true,
-                'preparation_time' => 10,
-                'calories' => 280,
-            ],
-
-            // Desserts
-            [
-                'category_id' => 3,
-                'name' => 'Chocolate Lava Cake',
-                'description' => 'Warm chocolate cake with molten center and vanilla ice cream',
-                'price' => 8.99,
-                'is_vegetarian' => true,
-                'preparation_time' => 15,
-                'calories' => 550,
-            ],
-            [
-                'category_id' => 3,
-                'name' => 'Cheesecake',
-                'description' => 'New York style cheesecake with berry compote',
-                'price' => 7.99,
-                'is_vegetarian' => true,
-                'preparation_time' => 5,
-                'calories' => 420,
-            ],
-            [
-                'category_id' => 3,
-                'name' => 'Tiramisu',
-                'description' => 'Classic Italian dessert with coffee and mascarpone',
-                'price' => 8.99,
-                'is_vegetarian' => true,
-                'is_featured' => true,
-                'preparation_time' => 5,
-                'calories' => 380,
+                'category_id' => 2,
+                'name' => 'Roasted Fish & Plantains',
+                'description' => 'Spicy charcoal-grilled fish served with roasted plantains and pepper sauce.',
+                'price' => 4500,
+                'is_featured' => false,
+                'image' => '../images/fish.png',
             ],
 
             // Beverages
             [
-                'category_id' => 4,
-                'name' => 'Fresh Lemonade',
-                'description' => 'Freshly squeezed lemon juice with mint',
-                'price' => 4.99,
-                'is_vegetarian' => true,
-                'is_vegan' => true,
-                'preparation_time' => 5,
-                'calories' => 120,
-            ],
-            [
-                'category_id' => 4,
-                'name' => 'Iced Coffee',
-                'description' => 'Cold brew coffee with milk and ice',
-                'price' => 5.99,
-                'is_vegetarian' => true,
-                'preparation_time' => 3,
-                'calories' => 80,
-            ],
-            [
-                'category_id' => 4,
-                'name' => 'Smoothie Bowl',
-                'description' => 'Mixed berry smoothie with granola and fresh fruits',
-                'price' => 9.99,
-                'is_vegetarian' => true,
-                'is_vegan' => true,
-                'preparation_time' => 8,
-                'calories' => 350,
+                'category_id' => 3,
+                'name' => 'Fresh Palm Wine',
+                'description' => 'Sweet, freshly tapped local palm wine.',
+                'price' => 1500,
+                'is_featured' => false,
+                'image' => '../images/palmwine.png',
             ],
         ];
 
@@ -232,34 +143,21 @@ class DatabaseSeeder extends Seeder
                 'slug' => Str::slug($item['name']),
                 'description' => $item['description'],
                 'price' => $item['price'],
-                'discount_price' => $item['discount_price'] ?? null,
                 'is_available' => true,
-                'is_featured' => $item['is_featured'] ?? false,
-                'is_vegetarian' => $item['is_vegetarian'] ?? false,
-                'is_vegan' => $item['is_vegan'] ?? false,
-                'preparation_time' => $item['preparation_time'],
-                'calories' => $item['calories'],
+                'is_featured' => $item['is_featured'],
+                'image' => $item['image'],
             ]);
         }
 
         // Create coupons
         Coupon::create([
-            'code' => 'WELCOME10',
-            'type' => 'percentage',
-            'value' => 10,
-            'min_order_amount' => 20,
+            'code' => 'WELCOMEFCFA',
+            'type' => 'fixed',
+            'value' => 500,
+            'min_order_amount' => 5000,
             'usage_limit' => 100,
             'is_active' => true,
             'valid_until' => now()->addMonths(3),
-        ]);
-
-        Coupon::create([
-            'code' => 'SAVE5',
-            'type' => 'fixed',
-            'value' => 5,
-            'min_order_amount' => 30,
-            'is_active' => true,
-            'valid_until' => now()->addMonths(1),
         ]);
     }
 }
