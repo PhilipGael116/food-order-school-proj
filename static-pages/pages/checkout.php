@@ -50,46 +50,46 @@
                 <div class="pay-separator">Or</div>
 
                 <!-- Form -->
-                <form class="checkout-form">
+                <form class="checkout-form" id="checkout-form">
                     <div class="form-group">
-                        <label>Card Number <span>*</span></label>
+                        <label>Delivery Address <span>*</span></label>
                         <div class="input-wrapper">
-                            <input type="text" placeholder="5678 **** **** 1267">
-                            <i class="far fa-eye-slash input-icon"></i>
+                            <input type="text" id="address" placeholder="Enter your delivery neighborhood or address" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Card Holder Name</label>
+                        <label>Phone Number <span>*</span></label>
                         <div class="input-wrapper">
-                            <input type="text" placeholder="Cameron Williamson">
+                            <input type="text" id="phone" placeholder="+237 ..." required>
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Expiry Date <span>*</span></label>
-                            <div class="input-wrapper">
-                                <input type="text" placeholder="mm / yy">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>CVV/CVV2 <span>*</span></label>
-                            <div class="input-wrapper">
-                                <input type="text" placeholder="xxx">
-                                <div class="card-type-icon">
-                                    <i class="fab fa-cc-mastercard text-danger"></i>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label>Special Notes (Optional)</label>
+                        <div class="input-wrapper">
+                            <textarea id="notes" class="form-control" placeholder="Any special instructions for the chef or driver?"></textarea>
                         </div>
                     </div>
 
-                    <div class="total-display">
-                        <span>Total Amount:</span>
-                        <span class="amount">11000 FCFA</span>
+                    <div class="total-display mt-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal:</span>
+                            <span id="subtotal-display">0 FCFA</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Delivery Fee:</span>
+                            <span>1000 FCFA</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total Amount:</span>
+                            <span class="amount">0 FCFA</span>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn-pay">Pay 11000 FCFA</button>
+                    <button type="submit" class="btn-pay mt-4">Place Order</button>
+                    <p class="text-center mt-3 text-muted"><small>Payment will be Cash on Delivery</small></p>
                 </form>
             </div>
         </div>
@@ -98,6 +98,9 @@
     <!-- Footer -->
     <?php include '../components/footer.php'; ?>
 
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/checkout-page.js"></script>
 </body>

@@ -54,13 +54,6 @@ class CartController extends Controller
             ], 400);
         }
 
-        if ($menuItem->stock !== null && $request->quantity > $menuItem->stock) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Insufficient stock'
-            ], 400);
-        }
-
         $cart = Cart::updateOrCreate(
             [
                 'user_id' => $request->user()->id,
@@ -102,14 +95,6 @@ class CartController extends Controller
                 'success' => false,
                 'message' => 'Cart item not found'
             ], 404);
-        }
-
-        $menuItem = $cart->menuItem;
-        if ($menuItem->stock !== null && $request->quantity > $menuItem->stock) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Insufficient stock'
-            ], 400);
         }
 
         $cart->update([

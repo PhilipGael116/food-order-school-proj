@@ -145,84 +145,11 @@
     <!-- Products Section -->
     <div class="container text-center mt-5 mb-5">
         <h4 class="fw-bold mb-4 product-title">Our Products</h4>
-        <div class="row row-cols-1 row-cols-md-3 g-5">
-            <!-- Jollof -->
-            <div class="col">
-                <div class="product-card">
-                    <img src="../images/jollof.png" alt="Jollof Rice" class="product-img">
-                    <div class="product-name">Jollof Rice</div>
-                    <p class="product-desc">Authentic smoky flavor with fried plantain.</p>
-                    <div class="product-price">2500</div>
-                    <div class="product-footer">
-                        <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
-                        <div class="product-rating"><i class="fa fa-star"></i> 4.5</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Eru -->
-            <div class="col">
-                <div class="product-card">
-                    <img src="../images/eru.png" alt="Eru" class="product-img">
-                    <div class="product-name">Eru & Water Fufu</div>
-                    <p class="product-desc">Rich traditional vegetables with fufu.</p>
-                    <div class="product-price">4500</div>
-                    <div class="product-footer">
-                        <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
-                        <div class="product-rating"><i class="fa fa-star"></i> 4.8</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Ndole -->
-            <div class="col">
-                <div class="product-card">
-                    <img src="../images/ndole.png" alt="Ndole" class="product-img">
-                    <div class="product-name">Ndole & Miondo</div>
-                    <p class="product-desc">Creamy bitter leaves with cassava.</p>
-                    <div class="product-price">3500</div>
-                    <div class="product-footer">
-                        <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
-                        <div class="product-rating"><i class="fa fa-star"></i> 4.7</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Achu -->
-            <div class="col">
-                <div class="product-card">
-                    <img src="../images/achu.png" alt="Achu" class="product-img">
-                    <div class="product-name">Achu & Yellow Soup</div>
-                    <p class="product-desc">Taro paste with savory yellow soup.</p>
-                    <div class="product-price">3000</div>
-                    <div class="product-footer">
-                        <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
-                        <div class="product-rating"><i class="fa fa-star"></i> 4.9</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Repeat Jollof -->
-            <div class="col">
-                <div class="product-card">
-                    <img src="../images/jollof.png" alt="Jollof Rice" class="product-img">
-                    <div class="product-name">Jollof Delight</div>
-                    <p class="product-desc">Extra spicy with choice of fish or chicken.</p>
-                    <div class="product-price">3500</div>
-                    <div class="product-footer">
-                        <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
-                        <div class="product-rating"><i class="fa fa-star"></i> 4.6</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Repeat Eru -->
-            <div class="col">
-                <div class="product-card">
-                    <img src="../images/eru.png" alt="Eru" class="product-img">
-                    <div class="product-name">Special Eru</div>
-                    <p class="product-desc">Extra kanda and smoked fish portions.</p>
-                    <div class="product-price">5500</div>
-                    <div class="product-footer">
-                        <button class="product-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>    
-                        <div class="product-rating"><i class="fa fa-star"></i> 5.0</div>
-                    </div>
-                </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="featured-products-container">
+            <!-- Products will be loaded here dynamically -->
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-spinner fa-spin fa-3x text-primary mb-3"></i>
+                <p>Loading our delicious meals...</p>
             </div>
         </div>
 
@@ -371,6 +298,35 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/product-cart.js"></script>
+    <script src="../js/product-loader.js"></script>
+    <script>
+        $(document).ready(async function() {
+            // Load featured products
+            const featuredProducts = await productLoader.fetchFeaturedProducts();
+            productLoader.renderProducts(featuredProducts, 'featured-products-container');
+
+            // Handle Add to Cart using event delegation for dynamic elements
+            $(document).on('click', '.product-btn[data-id]', function() {
+                const btn = $(this);
+                const item = {
+                    id: btn.data('id'),
+                    name: btn.data('name'),
+                    price: btn.data('price'),
+                    image: btn.data('image'),
+                    quantity: 1
+                };
+                
+                cartManager.addToCart(item);
+                
+                // Visual feedback
+                const originalContent = btn.html();
+                btn.html('Added! <i class="fas fa-check"></i>').addClass('btn-success text-white').prop('disabled', true);
+                setTimeout(() => {
+                    btn.html(originalContent).removeClass('btn-success text-white').prop('disabled', false);
+                }, 1500);
+            });
+        });
+    </script>
 </body>
 
 </html>
