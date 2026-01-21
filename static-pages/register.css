@@ -547,3 +547,33 @@ body {
     letter-spacing: 2px;
     font-family: var(--ff-primary);
 }
+
+/* Header specific fixes */
+.main-header .icons {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+}
+
+.main-header .icons.is-logged-in a[href*="cart.php"] {
+    margin-right: 40px !important;
+}
+
+.main-header .icons a {
+    font-size: 20px;
+    color: var(--color-black);
+    transition: 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+}

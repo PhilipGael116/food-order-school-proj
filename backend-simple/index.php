@@ -45,6 +45,23 @@ if (isset($_GET['debug'])) {
     exit;
 }
 
+// Helper to get user from token
+function getUserFromToken($pdo) {
+    if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
+        return null;
+    }
+    
+    $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
+    if (preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
+        $token = $matches[1];
+        $stmt = $pdo->prepare("SELECT id FROM users WHERE api_token = ?");
+        $stmt->execute([$token]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['id'] : null;
+    }
+    return null;
+}
+
 // REGISTER/LOGIN ENDPOINT - handle both /api/register and /register
 if (($uri === '/api/register' || $uri === '/register') && $method === 'POST') {
     $email = $input['email'] ?? '';
@@ -64,6 +81,11 @@ if (($uri === '/api/register' || $uri === '/register') && $method === 'POST') {
         // Login
         if (password_verify($password, $user['password'])) {
             $token = bin2hex(random_bytes(32));
+            
+            // Save token
+            $stmt = $pdo->prepare("UPDATE users SET api_token = ? WHERE id = ?");
+            $stmt->execute([$token, $user['id']]);
+            
             echo json_encode([
                 'success' => true,
                 'message' => 'Welcome back!',
@@ -82,12 +104,12 @@ if (($uri === '/api/register' || $uri === '/register') && $method === 'POST') {
     } else {
         // Register new user
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $token = bin2hex(random_bytes(32));
         
-        $stmt = $pdo->prepare("INSERT INTO users (email, password, created_at, updated_at) VALUES (?, ?, NOW(), NOW())");
-        $stmt->execute([$email, $hashedPassword]);
+        $stmt = $pdo->prepare("INSERT INTO users (email, password, api_token, created_at, updated_at) VALUES (?, ?, ?, NOW(), NOW())");
+        $stmt->execute([$email, $hashedPassword, $token]);
         
         $userId = $pdo->lastInsertId();
-        $token = bin2hex(random_bytes(32));
         
         echo json_encode([
             'success' => true,
@@ -107,6 +129,13 @@ if (($uri === '/api/register' || $uri === '/register') && $method === 'POST') {
 
 // PLACE ORDER ENDPOINT - handle both /api/orders and /orders
 if (($uri === '/api/orders' || $uri === '/orders') && $method === 'POST') {
+    // Authenticate User
+    $userId = getUserFromToken($pdo);
+    if (!$userId) {
+        echo json_encode(['success' => false, 'message' => 'Unauthorized. Please login first.']);
+        exit;
+    }
+
     $address = $input['delivery_address'] ?? '';
     $phone = $input['delivery_phone'] ?? '';
     $items = $input['items'] ?? [];
@@ -116,37 +145,47 @@ if (($uri === '/api/orders' || $uri === '/orders') && $method === 'POST') {
         exit;
     }
     
-    // Calculate totals
+    // 1. Validate items and calculate totals first
     $subtotal = 0;
-    foreach ($items as $item) {
-        $stmt = $pdo->prepare("SELECT price FROM menu_items WHERE slug = ?");
-        $stmt->execute([$item['slug']]);
-        $menuItem = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($menuItem) {
-            $subtotal += $menuItem['price'] * $item['quantity'];
-        }
-    }
-    
-    $deliveryFee = 1000;
-    $total = $subtotal + $deliveryFee;
-    $orderNumber = 'ORD-' . strtoupper(substr(md5(time()), 0, 8));
-    
-    // Create order
-    $stmt = $pdo->prepare("INSERT INTO orders (user_id, order_number, status, payment_status, payment_method, subtotal, delivery_fee, total, delivery_address, delivery_phone, notes, created_at, updated_at) VALUES (1, ?, 'pending', 'paid', 'online', ?, ?, ?, ?, ?, 'Order from website', NOW(), NOW())");
-    $stmt->execute([$orderNumber, $subtotal, $deliveryFee, $total, $address, $phone]);
-    
-    $orderId = $pdo->lastInsertId();
-    
-    // Create order items
+    $preparedItems = []; // Store valid items to avoid re-querying
+
     foreach ($items as $item) {
         $stmt = $pdo->prepare("SELECT id, name, price FROM menu_items WHERE slug = ?");
         $stmt->execute([$item['slug']]);
         $menuItem = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         if ($menuItem) {
-            $stmt = $pdo->prepare("INSERT INTO order_items (order_id, menu_item_id, item_name, quantity, price, created_at, updated_at) VALUES (?, ?, ?, ?, ?, NOW(), NOW())");
-            $stmt->execute([$orderId, $menuItem['id'], $menuItem['name'], $item['quantity'], $menuItem['price']]);
+            $quantity = (int)$item['quantity'];
+            if ($quantity < 1) $quantity = 1;
+
+            $lineTotal = $menuItem['price'] * $quantity;
+            $subtotal += $lineTotal;
+
+            // Save for the insertion step
+            $preparedItems[] = [
+                'id' => $menuItem['id'],
+                'name' => $menuItem['name'],
+                'price' => $menuItem['price'],
+                'quantity' => $quantity
+            ];
         }
+    }
+
+    $deliveryFee = 1000;
+    $total = $subtotal + $deliveryFee;
+    $orderNumber = 'ORD-' . strtoupper(substr(md5(time()), 0, 8));
+
+    // 2. Create the Order
+    $stmt = $pdo->prepare("INSERT INTO orders (user_id, order_number, status, payment_status, payment_method, subtotal, delivery_fee, total, delivery_address, delivery_phone, notes, created_at, updated_at) VALUES (?, ?, 'confirmed', 'paid', 'online', ?, ?, ?, ?, ?, 'Order from website', NOW(), NOW())");
+    $stmt->execute([$userId, $orderNumber, $subtotal, $deliveryFee, $total, $address, $phone]);
+    
+    $orderId = $pdo->lastInsertId();
+    
+    // 3. Create Order Items (using the data we already fetched)
+    $stmtItem = $pdo->prepare("INSERT INTO order_items (order_id, menu_item_id, item_name, quantity, price, created_at, updated_at) VALUES (?, ?, ?, ?, ?, NOW(), NOW())");
+    
+    foreach ($preparedItems as $pItem) {
+        $stmtItem->execute([$orderId, $pItem['id'], $pItem['name'], $pItem['quantity'], $pItem['price']]);
     }
     
     echo json_encode([

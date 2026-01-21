@@ -3,13 +3,35 @@ $(document).ready(function () {
     function renderCart() {
         const cart = window.cartManager.getCart();
         const $tbody = $('.cart-table tbody');
-        $tbody.empty();
+        const $cartRow = $('.cart-section .row');
+
+        // Remove any existing empty state to avoid duplicates
+        $('.empty-cart-state').remove();
 
         if (cart.length === 0) {
-            $tbody.append('<tr><td colspan="4" class="text-center py-5">Your cart is empty. <a href="menu.php" class="text-tangerine">Go to Menu</a></td></tr>');
-            updateCartTotals();
+            // Hide the table and totals columns
+            $cartRow.children().hide();
+
+            // Inject the Empty State UI
+            const emptyHtml = `
+                <div class="col-12 text-center empty-cart-state py-5">
+                    <div class="bg-white p-5 rounded-4 shadow-sm" style="max-width: 600px; margin: 0 auto;">
+                        <i class="fas fa-shopping-basket mb-4" style="font-size: 80px; color: #fde8d0;"></i>
+                        <h2 class="fw-bold mb-3">Your Cart is Empty</h2>
+                        <p class="text-muted mb-4">Looks like you haven't made your choice yet. Go ahead and explore our delicious menu!</p>
+                        <a href="menu.php" class="btn text-white fw-bold px-5 py-3" style="background-color: #f9942a; border-radius: 12px; transition: 0.3s;">
+                            Return to Menu
+                        </a>
+                    </div>
+                </div>
+            `;
+            $cartRow.append(emptyHtml);
             return;
         }
+
+        // Show columns and clean up if cart has items
+        $cartRow.children().not('.empty-cart-state').fadeIn();
+        $tbody.empty();
 
         cart.forEach(item => {
             const row = `
