@@ -145,7 +145,7 @@
     <!-- Products Section -->
     <div class="container text-center mt-5 mb-5">
         <h4 class="fw-bold mb-4 product-title">Our Products</h4>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="featured-products-container">
+        <div class="row row-cols-1 row-cols-md-3 g-5" id="featured-products-container">
             <!-- Products will be loaded here dynamically -->
             <div class="col-12 text-center py-5">
                 <i class="fas fa-spinner fa-spin fa-3x text-primary mb-3"></i>

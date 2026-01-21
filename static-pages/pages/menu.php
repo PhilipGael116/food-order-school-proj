@@ -76,7 +76,7 @@
                     <a href="#" class="view-all">View all</a>
                 </div>
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="all-products-container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 g-5" id="all-products-container">
                     <!-- Products will be loaded here dynamically -->
                     <div class="col-12 text-center py-5">
                         <i class="fas fa-spinner fa-spin fa-3x text-primary mb-3"></i>
