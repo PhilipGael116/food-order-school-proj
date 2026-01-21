@@ -343,18 +343,11 @@ p.p2 {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    /* Prevent wrapping */
     flex-shrink: 0;
-    /* Prevent squeezing */
-}
-
-/* Explicit spacing for cart when logged in */
-.main-header .icons.is-logged-in a[href*="cart.php"] {
-    margin-right: 40px !important;
-    /* Force separation */
 }
 
 .main-header .icons a {
+    margin-left: 1.5rem;
     font-size: 20px;
     color: var(--color-black);
     transition: 0.3s ease;
@@ -363,6 +356,11 @@ p.p2 {
     display: flex;
     align-items: center;
     flex-shrink: 0;
+}
+
+/* Explicit spacing for cart when logged in */
+.main-header .icons.is-logged-in a[href*="cart.php"] {
+    margin-right: 45px !important;
 }
 
 .user-profile {

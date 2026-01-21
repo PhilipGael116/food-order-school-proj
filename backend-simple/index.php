@@ -47,11 +47,23 @@ if (isset($_GET['debug'])) {
 
 // Helper to get user from token
 function getUserFromToken($pdo) {
-    if (!isset($_SERVER['HTTP_AUTHORIZATION'])) {
+    $authHeader = null;
+    
+    if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+        $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
+    } elseif (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+        $authHeader = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+    } elseif (function_exists('apache_request_headers')) {
+        $headers = apache_request_headers();
+        if (isset($headers['Authorization'])) {
+            $authHeader = $headers['Authorization'];
+        }
+    }
+
+    if (!$authHeader) {
         return null;
     }
     
-    $authHeader = $_SERVER['HTTP_AUTHORIZATION'];
     if (preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
         $token = $matches[1];
         $stmt = $pdo->prepare("SELECT id FROM users WHERE api_token = ?");
@@ -62,8 +74,8 @@ function getUserFromToken($pdo) {
     return null;
 }
 
-// REGISTER/LOGIN ENDPOINT - handle both /api/register and /register
-if (($uri === '/api/register' || $uri === '/register') && $method === 'POST') {
+// REGISTER/LOGIN ENDPOINT - handle both /api/register, /register, /login, /api/login
+if (($uri === '/api/register' || $uri === '/register' || $uri === '/login' || $uri === '/api/login') && $method === 'POST') {
     $email = $input['email'] ?? '';
     $password = $input['password'] ?? '';
     

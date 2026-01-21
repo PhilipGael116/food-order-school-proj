@@ -556,11 +556,8 @@ body {
     flex-shrink: 0;
 }
 
-.main-header .icons.is-logged-in a[href*="cart.php"] {
-    margin-right: 40px !important;
-}
-
 .main-header .icons a {
+    margin-left: 1.5rem;
     font-size: 20px;
     color: var(--color-black);
     transition: 0.3s ease;
@@ -569,6 +566,10 @@ body {
     display: flex;
     align-items: center;
     flex-shrink: 0;
+}
+
+.main-header .icons.is-logged-in a[href*="cart.php"] {
+    margin-right: 45px !important;
 }
 
 .user-profile {

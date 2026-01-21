@@ -1,6 +1,9 @@
 RewriteEngine On
 RewriteBase /food-order-school-proj/backend-simple/
 
+# Pass Authorization Header to PHP
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
 # Handle API requests
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
